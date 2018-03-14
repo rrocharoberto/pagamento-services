@@ -1,0 +1,25 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>br.inatel.pos</groupId>
+    <artifactId>dm112-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <name>Projects used in DM112 classes</name>
+
+    <modules>
+        <module>ExemploDM112_GAE</module>
+        <module>PagamentoDM112</module>
+        <module>PedidoDM112</module>
+        <module>UtilityDM112</module>
+    </modules>
+
+    <build>
+    </build>
+
+    <dependencies>
+    </dependencies>
+</project>
