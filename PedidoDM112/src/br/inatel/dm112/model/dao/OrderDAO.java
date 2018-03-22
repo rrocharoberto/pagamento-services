@@ -24,19 +24,32 @@ public class OrderDAO {
 
 	public List<Order> getOrdersByCPF(String cpf) {
 
-//		String ql = "select o from Order o where o.cpf = :cpfFilter";
-		String ql = "select o from Order o";
+		String ql = "select o from Order o where o.cpf = :cpfFilter";
 		TypedQuery<Order> q = em.createQuery(ql, Order.class);
-//		q.setParameter("cpfFilter", cpf);
+		q.setParameter("cpfFilter", cpf);
 
 		List<Order> orders = q.getResultList();
-		System.out.println("qtd de orders do cpf " + cpf + " : " + orders.size());
+		printOrders(orders);
+		return orders;
+	}
+
+	public List<Order> getAllOrders() {
+
+		String ql = "select o from Order o";
+		TypedQuery<Order> q = em.createQuery(ql, Order.class);
+
+		List<Order> orders = q.getResultList();
+		printOrders(orders);
+		return orders;
+	}
+
+	private void printOrders(List<Order> orders) {
+		System.out.println("qtd de orders: " + orders.size());
 		for (Order order : orders) {
 			System.out.println(order);
 		}
-		return orders;
 	}
-	
+
 	public void updateOrder(Order o) {
 		em.getTransaction().begin();
 		em.merge(o);

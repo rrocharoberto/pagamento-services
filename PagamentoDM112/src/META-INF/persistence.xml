@@ -10,8 +10,6 @@
 
     		<property name="hibernate.connection.driver_class" value="org.sqlite.JDBC"/>
     		<property name="hibernate.connection.url" value="jdbc:sqlite:pagamento.db"/>
-    		<!--<property name="hibernate.connection.username" value="labosi"/>
-    		<property name="hibernate.connection.password" value="s%aHb31J7"/>-->
 
     	</properties>
     </persistence-unit>
