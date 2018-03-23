@@ -11,9 +11,9 @@ import javax.ws.rs.core.Response;
 
 import org.glassfish.jersey.client.JerseyClientBuilder;
 
+import br.inatel.dm112.model.Order;
 import br.inatel.dm112.model.OrderResponse;
 import br.inatel.dm112.model.Orders;
-import br.inatel.dm112.model.entities.Order;
 
 public class OrderClient {
 

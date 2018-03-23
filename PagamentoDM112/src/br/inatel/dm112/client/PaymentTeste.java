@@ -4,10 +4,10 @@ import java.util.Date;
 
 import br.inatel.dm112.client.billet.stub.BilletGenData;
 import br.inatel.dm112.client.mail.stub.MailStatusResponse;
+import br.inatel.dm112.model.Order;
 import br.inatel.dm112.model.OrderResponse;
 import br.inatel.dm112.model.PaymentStatus;
 import br.inatel.dm112.model.ResponseStatus;
-import br.inatel.dm112.model.entities.Order;
 
 
 public class PaymentTeste {

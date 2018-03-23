@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>PagamentoDM112</groupId>
+	<groupId>br.inatel.dm112</groupId>
 	<artifactId>PagamentoDM112</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
@@ -44,7 +44,13 @@
 	<dependencies>
 
 		<dependency>
-			<groupId>PedidoDM112</groupId>
+			<groupId>br.inatel.dm112</groupId>
+			<artifactId>CommonsDM112</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>br.inatel.dm112</groupId>
 			<artifactId>PedidoDM112</artifactId>
 			<version>1.0.0-SNAPSHOT</version>
 			<type>war</type>

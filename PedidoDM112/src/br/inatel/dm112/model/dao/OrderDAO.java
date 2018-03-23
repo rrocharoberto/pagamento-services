@@ -5,52 +5,55 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.inatel.dm112.model.entities.Order;
+import br.inatel.dm112.model.entities.OrderEntity;
 import util.HibernateUtil;
 
 public class OrderDAO {
 
 	EntityManager em = HibernateUtil.getEntityManager();
 
-	public void insert(Order o) {
+	public void insert(OrderEntity o) {
 		em.getTransaction().begin();
 		em.persist(o);
 		em.getTransaction().commit();
 	}
 
-	public Order getOrderById(int number) {
-		return em.find(Order.class, number);
+	public OrderEntity getOrderById(int number) {
+		
+		System.out.println(em.getProperties());
+		
+		return em.find(OrderEntity.class, number);
 	}
 
-	public List<Order> getOrdersByCPF(String cpf) {
+	public List<OrderEntity> getOrdersByCPF(String cpf) {
 
 		String ql = "select o from Order o where o.cpf = :cpfFilter";
-		TypedQuery<Order> q = em.createQuery(ql, Order.class);
+		TypedQuery<OrderEntity> q = em.createQuery(ql, OrderEntity.class);
 		q.setParameter("cpfFilter", cpf);
 
-		List<Order> orders = q.getResultList();
+		List<OrderEntity> orders = q.getResultList();
 		printOrders(orders);
 		return orders;
 	}
 
-	public List<Order> getAllOrders() {
+	public List<OrderEntity> getAllOrders() {
 
 		String ql = "select o from Order o";
-		TypedQuery<Order> q = em.createQuery(ql, Order.class);
+		TypedQuery<OrderEntity> q = em.createQuery(ql, OrderEntity.class);
 
-		List<Order> orders = q.getResultList();
+		List<OrderEntity> orders = q.getResultList();
 		printOrders(orders);
 		return orders;
 	}
 
-	private void printOrders(List<Order> orders) {
+	private void printOrders(List<OrderEntity> orders) {
 		System.out.println("qtd de orders: " + orders.size());
-		for (Order order : orders) {
+		for (OrderEntity order : orders) {
 			System.out.println(order);
 		}
 	}
 
-	public void updateOrder(Order o) {
+	public void updateOrder(OrderEntity o) {
 		em.getTransaction().begin();
 		em.merge(o);
 		em.getTransaction().commit();

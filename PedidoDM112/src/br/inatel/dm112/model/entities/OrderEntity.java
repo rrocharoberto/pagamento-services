@@ -10,13 +10,13 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import br.inatel.dm112.model.Order.STATUS;
+
 @Entity
 @Table(name = "Pedido")
 @XmlRootElement(name = "order")
-public class Order {
+public class OrderEntity {
 	
-	public static enum STATUS { FILLED, PENDING, CONFIRMED }
-
 	@Id
 	@Column(name = "numero")
 	private int number;
@@ -40,7 +40,7 @@ public class Order {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date paymentDate;
 
-	public Order() {
+	public OrderEntity() {
 		this.status = STATUS.FILLED.ordinal();
 	}
 
@@ -102,7 +102,7 @@ public class Order {
 
 	@Override
 	public String toString() {
-		return "Order [number=" + number + ", cpf=" + cpf + ", value=" + value + ", status=" + status + ", orderDate="
+		return "OrderEntity [number=" + number + ", cpf=" + cpf + ", value=" + value + ", status=" + status + ", orderDate="
 				+ orderDate + ", issueDate=" + issueDate + ", paymentDate=" + paymentDate + "]";
 	}
 

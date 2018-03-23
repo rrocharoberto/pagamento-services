@@ -24,7 +24,6 @@ public class SQLiteUtil {
 		Connection connection = null;
 
 		try {
-
 			String script = "CREATE TABLE Pedido ( " 
 					+ "    numero INTEGER NOT NULL, " 
 					+ "	   cpf VARCHAR(14) NOT NULL, "
@@ -37,31 +36,26 @@ public class SQLiteUtil {
 					+ " ); ";
 
 			// Opening database connection
-			connection = DriverManager.getConnection("jdbc:sqlite:pagamento.db");
+			// TODO: cria o arquivo do banco no home do usuário
+			connection = DriverManager.getConnection("jdbc:sqlite:/home/aluno/pagamento.sqlite");
 			Statement statement = connection.createStatement();
 
 			// Creating database table
 			// statement.executeUpdate("DROP TABLE IF EXISTS product");
 			statement.executeUpdate(script);
-			System.out.println("Executou o script.");
+			System.out.println("Criou o banco sqlite.");
 
-			// // Adding contents into the database
-			// statement
-			// .executeUpdate("INSERT INTO product VALUES(1, 'Tennis racket')");
-			// statement.executeUpdate("INSERT INTO product VALUES(2,
-			// 'Guitar')");
+			// // Adding contents into the database statement
+			// statement.executeUpdate("INSERT INTO product VALUES(1, 'Product 1')");
+			// statement.executeUpdate("INSERT INTO product VALUES(2, 'Product 2')");
 			//
-			// // Querying the contents of the database using native SQLite
-			// query
-			// ResultSet results = statement.executeQuery("SELECT * FROM
-			// product");
+			// // Querying the contents of the database using native SQLite query
+			// ResultSet results = statement.executeQuery("SELECT * FROM product");
 			//
-			// System.out.println("List of products\n----------------");
+			// System.out.println("List of products");
 			//
 			// while (results.next()) {
-			//
-			// System.out.println(results.getString("name") + " (id="
-			// + results.getInt("id") + ")");
+			// 	System.out.println(results.getString("name") + " (id=" + results.getInt("id") + ")");
 			// }
 		} catch (SQLException e) {
 			System.err.println(e.getMessage());
