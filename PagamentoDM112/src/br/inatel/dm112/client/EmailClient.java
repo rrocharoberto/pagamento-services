@@ -11,6 +11,9 @@ import br.inatel.dm112.client.mail.stub.MailStatusResponse;
 
 public class EmailClient {
 
+	//TODO: modificar este email para enviar para outro endereço
+	private static String sendTo = "rrocha.roberto@gmail.com";
+	
 	public MailStatusResponse callSendMailService(String from, String password, String to, byte[] content) {
 		QName SERVICE_NAME = new QName("dm112", "mailService");
 
@@ -34,9 +37,9 @@ public class EmailClient {
 			fis.close();
 
 			EmailClient client = new EmailClient();
-
+			
 			MailStatusResponse result = client.callSendMailService(
-					"robertorr9@gmail.com", "robertodm112","rrocha.roberto@gmail.com", bytes);
+					"robertorr9@gmail.com", "robertodm112", sendTo, bytes);
 			
 			System.out.println("Resposta do email: " + result.getStatus());
 		} catch (IOException e) {
