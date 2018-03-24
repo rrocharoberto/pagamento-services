@@ -27,7 +27,7 @@ public class OrderDAO {
 
 	public List<OrderEntity> getOrdersByCPF(String cpf) {
 
-		String ql = "select o from Order o where o.cpf = :cpfFilter";
+		String ql = "select o from OrderEntity o where o.cpf = :cpfFilter";
 		TypedQuery<OrderEntity> q = em.createQuery(ql, OrderEntity.class);
 		q.setParameter("cpfFilter", cpf);
 
@@ -38,7 +38,7 @@ public class OrderDAO {
 
 	public List<OrderEntity> getAllOrders() {
 
-		String ql = "select o from Order o";
+		String ql = "select o from OrderEntity o";
 		TypedQuery<OrderEntity> q = em.createQuery(ql, OrderEntity.class);
 
 		List<OrderEntity> orders = q.getResultList();

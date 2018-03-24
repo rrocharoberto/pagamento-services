@@ -8,13 +8,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.xml.bind.annotation.XmlRootElement;
 
 import br.inatel.dm112.model.Order.STATUS;
 
 @Entity
 @Table(name = "Pedido")
-@XmlRootElement(name = "order")
 public class OrderEntity {
 	
 	@Id
