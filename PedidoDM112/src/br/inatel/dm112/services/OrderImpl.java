@@ -57,7 +57,15 @@ public class OrderImpl implements br.inatel.dm112.interfaces.OrderInterface {
 		
 		OrderEntity entity = dao.getOrderById(order.getNumber());
 		if (entity != null) {
+//			entity.setNumber(order.getNumber());
+			entity.setCpf(order.getCpf());
+			entity.setValue(order.getValue());
+			entity.setStatus(order.getStatus());
+			entity.setOrderDate(order.getOrderDate());
+			entity.setIssueDate(order.getIssueDate());
+			entity.setPaymentDate(order.getPaymentDate());
 			dao.updateOrder(entity);
+			System.out.println("OrderImpl updateOrder - atualizou a order com número: " + order.getNumber());
 			return new OrderResponse(ResponseStatus.OK.ordinal());
 		} else {
 			entity = new OrderEntity();
