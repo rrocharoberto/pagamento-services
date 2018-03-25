@@ -12,6 +12,12 @@ import br.inatel.dm112.model.ResponseStatus;
 
 public class PaymentTeste {
 
+	//TODO: Fique à vontade para alterar estes atributos
+	//TODO: Para enviar um email através do gmail, é necessário habilitar o SMTP da conta de envio.
+	private String sendToAddress = "rrocha.roberto@gmail.com";
+	private String sendFromAddress = "robertorr9@gmail.com";
+	private String sendPassAddress = "robertodm112";
+
 	public PaymentStatus startPaymentOfOrder(String cpf, String orderNumber) {
 		if (cpf == null || orderNumber == null) {
 			return new PaymentStatus(ResponseStatus.ERROR.ordinal(), cpf, orderNumber);
@@ -35,7 +41,7 @@ public class PaymentTeste {
 				if(respBillet.getStatus() == ResponseStatus.OK.ordinal()) {//OK
 					byte [] PDFContent = respBillet.getPdfContent();
 					MailStatusResponse respEmail = clientEmail.callSendMailService( //envia email com o pdf
-							"robertorr9@gmail.com", "robertodm112","rrocha.roberto@gmail.com", PDFContent);
+							sendFromAddress, sendPassAddress, sendToAddress , PDFContent);
 				
 					if(respEmail.getStatus() == ResponseStatus.OK.ordinal()) {//OK
 						return new PaymentStatus(ResponseStatus.OK.ordinal(), cpf, orderNumber); //Retorna sucesso
