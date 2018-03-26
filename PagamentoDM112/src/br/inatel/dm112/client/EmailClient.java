@@ -3,8 +3,6 @@ package br.inatel.dm112.client;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import javax.xml.namespace.QName;
-
 import br.inatel.dm112.client.mail.stub.MailImpl;
 import br.inatel.dm112.client.mail.stub.MailService;
 import br.inatel.dm112.client.mail.stub.MailStatusResponse;
@@ -15,13 +13,11 @@ public class EmailClient {
 	private static String sendTo = "rrocha.roberto@gmail.com";
 	
 	public MailStatusResponse callSendMailService(String from, String password, String to, byte[] content) {
-		QName SERVICE_NAME = new QName("dm112", "mailService");
 
 		//local:  http://localhost:8080/UtilityDM112/soap/mailservices?wsdl
 
-		MailService service = new MailService(MailService.WSDL_LOCATION, SERVICE_NAME);
+		MailService service = new MailService();
 		MailImpl port = service.getMailImplPort();
-
 		MailStatusResponse result = port.sendMail(from, password, to, content);
 		return result;
 	}
