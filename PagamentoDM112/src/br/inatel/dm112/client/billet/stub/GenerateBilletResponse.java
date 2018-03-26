@@ -17,7 +17,7 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
- *         &lt;element name="return" type="{dm112}billetGenData" minOccurs="0"/&gt;
+ *         &lt;element name="return" type="{dm112}billetGenResponse" minOccurs="0"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -33,17 +33,17 @@ import javax.xml.bind.annotation.XmlType;
 public class GenerateBilletResponse {
 
     @XmlElement(name = "return")
-    protected BilletGenData _return;
+    protected BilletGenResponse _return;
 
     /**
      * Gets the value of the return property.
      * 
      * @return
      *     possible object is
-     *     {@link BilletGenData }
+     *     {@link BilletGenResponse }
      *     
      */
-    public BilletGenData getReturn() {
+    public BilletGenResponse getReturn() {
         return _return;
     }
 
@@ -52,10 +52,10 @@ public class GenerateBilletResponse {
      * 
      * @param value
      *     allowed object is
-     *     {@link BilletGenData }
+     *     {@link BilletGenResponse }
      *     
      */
-    public void setReturn(BilletGenData value) {
+    public void setReturn(BilletGenResponse value) {
         this._return = value;
     }
 

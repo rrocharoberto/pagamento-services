@@ -24,7 +24,7 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _BilletGenData_QNAME = new QName("dm112", "billetGenData");
+    private final static QName _BilletGenResponse_QNAME = new QName("dm112", "billetGenResponse");
     private final static QName _GenerateBillet_QNAME = new QName("dm112", "generateBillet");
     private final static QName _GenerateBilletResponse_QNAME = new QName("dm112", "generateBilletResponse");
 
@@ -36,11 +36,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link BilletGenData }
+     * Create an instance of {@link BilletGenResponse }
      * 
      */
-    public BilletGenData createBilletGenData() {
-        return new BilletGenData();
+    public BilletGenResponse createBilletGenResponse() {
+        return new BilletGenResponse();
     }
 
     /**
@@ -60,12 +60,12 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link BilletGenData }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link BilletGenResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "dm112", name = "billetGenData")
-    public JAXBElement<BilletGenData> createBilletGenData(BilletGenData value) {
-        return new JAXBElement<BilletGenData>(_BilletGenData_QNAME, BilletGenData.class, null, value);
+    @XmlElementDecl(namespace = "dm112", name = "billetGenResponse")
+    public JAXBElement<BilletGenResponse> createBilletGenResponse(BilletGenResponse value) {
+        return new JAXBElement<BilletGenResponse>(_BilletGenResponse_QNAME, BilletGenResponse.class, null, value);
     }
 
     /**

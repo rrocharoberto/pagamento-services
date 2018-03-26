@@ -11,7 +11,7 @@ import javax.ws.rs.core.MediaType;
 import br.inatel.dm112.client.BilletClient;
 import br.inatel.dm112.client.EmailClient;
 import br.inatel.dm112.client.OrderClient;
-import br.inatel.dm112.client.billet.stub.BilletGenData;
+import br.inatel.dm112.client.billet.stub.BilletGenResponse;
 import br.inatel.dm112.client.mail.stub.MailStatusResponse;
 import br.inatel.dm112.interfaces.Payment;
 import br.inatel.dm112.model.Order;
@@ -45,7 +45,7 @@ public class PaymentImpl implements Payment {
 			OrderResponse respOrder = clientOrder.updateOrder(order); //atualiza o status do pedido
 
 			if(respOrder.getStatus() == ResponseStatus.OK.ordinal()) { //OK
-				BilletGenData respBillet = clientBillet.callGenerateBilletService(orderNumber, cpf); //gera o boleto
+				BilletGenResponse respBillet = clientBillet.callGenerateBilletService(orderNumber, cpf); //gera o boleto
 			
 				if(respBillet.getStatus() == ResponseStatus.OK.ordinal()) {//OK
 					byte [] PDFContent = respBillet.getPdfContent();

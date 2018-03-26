@@ -53,7 +53,7 @@ public final class BilletImpl_BilletImplPort_Client {
         System.out.println("Invoking generateBillet...");
         java.lang.String _generateBillet_arg0 = "";
         java.lang.String _generateBillet_arg1 = "";
-        br.inatel.dm112.client.billet.stub.BilletGenData _generateBillet__return = port.generateBillet(_generateBillet_arg0, _generateBillet_arg1);
+        br.inatel.dm112.client.billet.stub.BilletGenResponse _generateBillet__return = port.generateBillet(_generateBillet_arg0, _generateBillet_arg1);
         System.out.println("generateBillet.result=" + _generateBillet__return);
 
 

@@ -22,7 +22,7 @@ public interface BilletImpl {
     @RequestWrapper(localName = "generateBillet", targetNamespace = "dm112", className = "dm112.GenerateBillet")
     @ResponseWrapper(localName = "generateBilletResponse", targetNamespace = "dm112", className = "dm112.GenerateBilletResponse")
     @WebResult(name = "return", targetNamespace = "")
-    public br.inatel.dm112.client.billet.stub.BilletGenData generateBillet(
+    public br.inatel.dm112.client.billet.stub.BilletGenResponse generateBillet(
         @WebParam(name = "arg0", targetNamespace = "")
         java.lang.String arg0,
         @WebParam(name = "arg1", targetNamespace = "")

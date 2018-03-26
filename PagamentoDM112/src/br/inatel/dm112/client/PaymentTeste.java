@@ -2,7 +2,7 @@ package br.inatel.dm112.client;
 
 import java.util.Date;
 
-import br.inatel.dm112.client.billet.stub.BilletGenData;
+import br.inatel.dm112.client.billet.stub.BilletGenResponse;
 import br.inatel.dm112.client.mail.stub.MailStatusResponse;
 import br.inatel.dm112.model.Order;
 import br.inatel.dm112.model.OrderResponse;
@@ -36,7 +36,7 @@ public class PaymentTeste {
 			OrderResponse respOrder = clientOrder.updateOrder(order); //atualiza o status do pedido com
 
 			if(respOrder.getStatus() == ResponseStatus.OK.ordinal()) { //OK
-				BilletGenData respBillet = clientBillet.callGenerateBilletService(orderNumber, cpf); //gera o boleto
+				BilletGenResponse respBillet = clientBillet.callGenerateBilletService(orderNumber, cpf); //gera o boleto
 			
 				if(respBillet.getStatus() == ResponseStatus.OK.ordinal()) {//OK
 					byte [] PDFContent = respBillet.getPdfContent();
