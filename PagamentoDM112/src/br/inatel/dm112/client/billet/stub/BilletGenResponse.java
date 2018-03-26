@@ -28,7 +28,7 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "billetGenResponse", propOrder = {
+@XmlType(name = "billetGenResponse", namespace = "dm112", propOrder = {
     "message",
     "pdfContent",
     "status"
