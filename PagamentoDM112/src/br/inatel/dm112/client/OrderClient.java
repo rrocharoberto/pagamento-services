@@ -19,7 +19,8 @@ public class OrderClient {
 
 	//local
 	private String restURL = "http://localhost:8080/PedidoDM112/rest/";
-//	GAE: private String restURL = "http://dm112exemplo1.appspot.com/rest/";
+	//GAE:
+	//private String restURL = "http://exemplodm112.appspot.com/rest/";
 	
 	public Order retrieveOrder(String orderNumber) {
 		Client client = JerseyClientBuilder.createClient();
