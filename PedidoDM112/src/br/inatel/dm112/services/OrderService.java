@@ -74,7 +74,7 @@ public class OrderService {
 			System.out.println("OrderImpl updateOrder - order não encontrado com número: " + order.getNumber());
 			orderDAO.insert(entity);
 		} else {
-			throw new OrderNotFoundException("Pedido já existe: " + order.getNumber());
+			throw new OrderNotFoundException("Pedido já existe: " + order.getNumber());//TODO: melhorar a semântica
 		}
 	}
 

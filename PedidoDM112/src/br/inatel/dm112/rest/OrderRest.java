@@ -58,7 +58,7 @@ public class OrderRest implements OrderInterface {
 	//usado para teste
 	@Override
 	@GetMapping("/orders")
-	public List<Order>  getAllOrders() {
+	public List<Order> getAllOrders() {
 
 		System.out.println("OrderRest - getAllOrders");
 		return orderService.getAllOrders();
