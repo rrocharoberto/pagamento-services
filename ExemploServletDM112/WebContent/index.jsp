@@ -7,7 +7,7 @@
 <body>
 <h1>Página inicial do projeto ExemploServlet DM112!</h1>
 <br/>
-<a href="localhost:8080/ExemploServletDM112/helloService">Servlet de exemplo</a>
+<a href="http://localhost:8080/ExemploServletDM112/helloService">Servlet de exemplo</a>
 <br/>
 Exemplo simples de um servlet.
 <br/>
