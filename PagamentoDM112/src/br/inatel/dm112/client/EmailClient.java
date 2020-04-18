@@ -3,23 +3,38 @@ package br.inatel.dm112.client;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import br.inatel.dm112.client.mail.stub.MailImpl;
-import br.inatel.dm112.client.mail.stub.MailService;
-import br.inatel.dm112.client.mail.stub.MailStatusResponse;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import br.inatel.dm112.model.MailRequestData;
+import br.inatel.dm112.model.MailStatusResponse;
+import br.inatel.dm112.model.OrderResponse;
+import reactor.core.publisher.Mono;
 
 public class EmailClient {
+
+	// local
+	private String restURL = "http://localhost:8080/UtilityDM112/api/";
 
 	//TODO: modificar este email para enviar para outro endereço
 	private static String sendTo = "rrocha.roberto@gmail.com";
 	
 	public MailStatusResponse callSendMailService(String from, String password, String to, byte[] content) {
 
-		//local:  http://localhost:8080/UtilityDM112/soap/mailservices?wsdl
-
-		MailService service = new MailService();
-		MailImpl port = service.getMailImplPort();
-		MailStatusResponse result = port.sendMail(from, password, to, content);
-		return result;
+		MailRequestData mrd = new MailRequestData(from, password, to, content);
+		
+		return WebClient
+				.create(restURL + "sendMail")
+		        .post()
+		        .contentType(MediaType.APPLICATION_JSON)
+		        .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+		        .body(Mono.just(mrd), OrderResponse.class)
+		        .accept(MediaType.APPLICATION_JSON)
+		        .retrieve()
+		        .bodyToFlux(MailStatusResponse.class)
+		        .log()
+		        .blockFirst();
 	}
 
 	public static void main(String[] args) {
@@ -41,6 +56,5 @@ public class EmailClient {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 }

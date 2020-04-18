@@ -2,15 +2,10 @@ package br.inatel.dm112.model;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
-
-@XmlRootElement(name = "order")
 public class Order {
 
-	@XmlTransient
+//	@JsonIgnore
 	public static enum STATUS { FILLED, PENDING, CONFIRMED }
-
 
 	private int number;
 

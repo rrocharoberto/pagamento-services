@@ -3,31 +3,29 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.inatel.dm112</groupId>
 	<artifactId>ExemploDM112_OS</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0</version>
 	<packaging>war</packaging>
 	<name>ExemploDM112_OS</name>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<maven.compiler.source>1.7</maven.compiler.source>
-		<maven.compiler.target>1.7</maven.compiler.target>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
 
-		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<hibernate-core-version>3.5.0-Final</hibernate-core-version>
-		<jersey.version>2.22</jersey.version>
-		<jaxrs.version>2.0.1</jaxrs.version>
-		<cxf.version>2.7.13</cxf.version>
+		<spring.version>5.2.2.RELEASE</spring.version>
+		<hibernate.version>5.4.10.Final</hibernate.version>
 	</properties>
 
 	<build>
+		<finalName>ExemploDM112_OS</finalName>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>
 				<configuration>
-					<source>1.7</source>
-					<target>1.7</target>
+					<source>1.8</source>
+					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -43,104 +41,53 @@
 
 	<dependencies>
 		<dependency>
+			<groupId>br.inatel.dm112</groupId>
+			<artifactId>CommonsDM112</artifactId>
+			<version>1.0</version>
+			<type>jar</type>
+		</dependency>
+
+		<!-- Add Spring MVC and REST support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webmvc</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+
+		<!-- Add Jackson for JSON/XML converters -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>2.10.2</version>
+		</dependency>
+
+		<!-- Used for email support -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>${spring.version}</version>
+		</dependency>
+		
+		<!-- Add Servlet support for Spring's AbstractAnnotationConfigDispatcherServletInitializer -->
+		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>3.0.1</version>
+			<version>3.1.0</version>
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- Add support for JSP ... get rid of Eclipse error -->
 		<dependency>
-		    <groupId>javax.xml.ws</groupId>
-		    <artifactId>jaxws-api</artifactId>
-		    <version>2.2.1</version>
+			<groupId>javax.servlet.jsp</groupId>
+			<artifactId>javax.servlet.jsp-api</artifactId>
+			<version>2.3.1</version>
 		</dependency>
-
-		<!-- Spring Dependencies -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-core</artifactId>
-			<version>4.1.2.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context</artifactId>
-			<version>4.1.2.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-web</artifactId>
-			<version>4.1.2.RELEASE</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-beans</artifactId>
-			<version>4.1.2.RELEASE</version>
-		</dependency>
-
-		<!-- Apache CXF Dependencies -->
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http-jetty</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-
-		<!-- Jackson The JSON Producer dependency -->
-		<dependency>
-			<groupId>org.codehaus.jackson</groupId>
-			<artifactId>jackson-jaxrs</artifactId>
-			<version>1.9.13</version>
-		</dependency>
-
-		<!-- Jersey -->
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-server</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.containers</groupId>
-			<artifactId>jersey-container-servlet-core</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-json-jackson</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.glassfish.jersey.media</groupId>
-			<artifactId>jersey-media-multipart</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
-
-		<!-- Jersey client -->
-		<dependency>
-			<groupId>org.glassfish.jersey.core</groupId>
-			<artifactId>jersey-client</artifactId>
-			<version>${jersey.version}</version>
-		</dependency>
-
 
 		<!-- Bopepo -->
 		<dependency>
 			<groupId>org.jrimum</groupId>
 			<artifactId>jrimum-bopepo</artifactId>
-			<version>0.2.3-SNAPSHOT</version><!-- 0.2.3-DEV-SNAPSHOT em desenvolvimento -->
+			<version>0.2.3-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Email -->
@@ -149,15 +96,6 @@
 			<artifactId>mail</artifactId>
 			<version>1.4</version>
 		</dependency>
-
-		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
-			<version>4.0</version>
-			<type>jar</type>
-			<scope>test</scope>
-		</dependency>
-
 	</dependencies>
 
 	<repositories>
@@ -170,31 +108,5 @@
 				<enabled>true</enabled>
 			</snapshots>
 		</repository>
-
 	</repositories>
-
-	<profiles>
-	    <profile>
-	     <!-- When built in OpenShift the 'openshift' profile will be used when invoking mvn. -->
-	     <!-- Use this profile for any OpenShift specific customization your app will need. -->
-	     <!-- By default that is to put the resulting archive into the 'deployments' folder. -->
-	     <!-- http://maven.apache.org/guides/mini/guide-building-for-different-environments.html -->
-	     <id>openshift</id>
-	     <build>
-		<finalName>ExemploDM112_OS</finalName>
-		<plugins>
-		  <plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-war-plugin</artifactId>
-		        <version>2.3</version>
-		        <configuration>
-		        	<failOnMissingWebXml>false</failOnMissingWebXml>
-		        	<outputDirectory>target</outputDirectory>
-		      		<warName>ROOT</warName>
-		        </configuration>
-		    </plugin>
-		</plugins>
-	      </build>
-	    </profile>
-	</profiles>
 </project>

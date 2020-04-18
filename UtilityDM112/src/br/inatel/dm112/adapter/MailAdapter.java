@@ -49,9 +49,6 @@ public class MailAdapter {
 			ByteArrayDataSource source = new ByteArrayDataSource(content, "application/pdf");
 			source.setName("Boleto.pdf");
 
-			// DataSource source = new FileDataSource(filename);
-			// messageBodyPart.setFileName(filename);
-
 			messageBodyPartAtt.setDataHandler(new DataHandler(source));
 			messageBodyPartAtt.setFileName("Boleto_Venda.pdf");
 			multipart.addBodyPart(messageBodyPartAtt);
@@ -61,6 +58,7 @@ public class MailAdapter {
 			Transport.send(message);
 			System.out.println("Sent message successfully....");
 		} catch (MessagingException e) {
+			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}

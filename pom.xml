@@ -11,6 +11,8 @@
     <name>Projects used in DM112 classes</name>
 
     <modules>
+        <module>CommonsDM112</module>
+        <module>ExemploDM112_OS</module>
         <module>ExemploDM112_GAE</module>
         <module>PagamentoDM112</module>
         <module>PedidoDM112</module>

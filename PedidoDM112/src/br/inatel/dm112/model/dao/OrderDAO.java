@@ -5,30 +5,37 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
-import br.inatel.dm112.model.entities.OrderEntity;
-import util.HibernateUtil;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
+import br.inatel.dm112.model.entities.OrderEntity;
+
+@Repository
 public class OrderDAO {
 
-	EntityManager em = HibernateUtil.getEntityManager();
+	@Autowired
+	private EntityManager entityManager;
 
 	public void insert(OrderEntity o) {
-		em.getTransaction().begin();
-		em.persist(o);
-		em.getTransaction().commit();
+		System.out.println("Salvando pedido: " + o.getNumber());
+
+		entityManager.getTransaction().begin();
+		entityManager.persist(o);
+		entityManager.getTransaction().commit();
 	}
 
 	public OrderEntity getOrderById(int number) {
-		
-		System.out.println(em.getProperties());
-		
-		return em.find(OrderEntity.class, number);
+
+		System.out.println("Consultando pedidos com número: " + number);
+
+		return entityManager.find(OrderEntity.class, number);
 	}
 
 	public List<OrderEntity> getOrdersByCPF(String cpf) {
+		System.out.println("Consultando pedidos do cpf: " + cpf);
 
 		String ql = "select o from OrderEntity o where o.cpf = :cpfFilter";
-		TypedQuery<OrderEntity> q = em.createQuery(ql, OrderEntity.class);
+		TypedQuery<OrderEntity> q = entityManager.createQuery(ql, OrderEntity.class);
 		q.setParameter("cpfFilter", cpf);
 
 		List<OrderEntity> orders = q.getResultList();
@@ -37,9 +44,10 @@ public class OrderDAO {
 	}
 
 	public List<OrderEntity> getAllOrders() {
+		System.out.println("Consultando todos os pedidos.");
 
 		String ql = "select o from OrderEntity o";
-		TypedQuery<OrderEntity> q = em.createQuery(ql, OrderEntity.class);
+		TypedQuery<OrderEntity> q = entityManager.createQuery(ql, OrderEntity.class);
 
 		List<OrderEntity> orders = q.getResultList();
 		printOrders(orders);
@@ -47,15 +55,15 @@ public class OrderDAO {
 	}
 
 	private void printOrders(List<OrderEntity> orders) {
-		System.out.println("qtd de orders: " + orders.size());
+		System.out.println("qtd de pedidos: " + orders.size());
 		for (OrderEntity order : orders) {
 			System.out.println(order);
 		}
 	}
 
 	public void updateOrder(OrderEntity o) {
-		em.getTransaction().begin();
-		em.merge(o);
-		em.getTransaction().commit();
+		entityManager.getTransaction().begin();
+		entityManager.merge(o);
+		entityManager.getTransaction().commit();
 	}
 }

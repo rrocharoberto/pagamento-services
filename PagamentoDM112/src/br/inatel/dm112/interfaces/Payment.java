@@ -4,8 +4,8 @@ import br.inatel.dm112.model.PaymentStatus;
 
 public interface Payment {
 
-	PaymentStatus startPaymentOfOrder(String cpf, String orderNumber);
+	PaymentStatus startPaymentOfOrder(String cpf, int orderNumber);
 
-	PaymentStatus confirmPaymentOfOrder(String cpf, String orderNumber);
+	PaymentStatus confirmPaymentOfOrder(String cpf, int orderNumber);
 
 }

@@ -7,6 +7,8 @@ import java.sql.Statement;
 
 public class SQLiteUtil {
 
+	private static final String DB_FILE_NAME = "/home/aluno/pagamento.sqlite";
+	
 	public static void main(String[] args) {
 		try {
 			new SQLiteUtil().performCreateTable();
@@ -37,13 +39,13 @@ public class SQLiteUtil {
 
 			// Opening database connection
 			// TODO: cria o arquivo do banco no home do usuário
-			connection = DriverManager.getConnection("jdbc:sqlite:/home/aluno/pagamento.sqlite");
+			connection = DriverManager.getConnection("jdbc:sqlite:" + DB_FILE_NAME);
 			Statement statement = connection.createStatement();
 
 			// Creating database table
 			// statement.executeUpdate("DROP TABLE IF EXISTS product");
 			statement.executeUpdate(script);
-			System.out.println("Criou o banco sqlite.");
+			System.out.println("Criou com sucesso o banco de pedidos (sqlite).");
 
 			// // Adding contents into the database statement
 			// statement.executeUpdate("INSERT INTO product VALUES(1, 'Product 1')");
@@ -58,7 +60,8 @@ public class SQLiteUtil {
 			// 	System.out.println(results.getString("name") + " (id=" + results.getInt("id") + ")");
 			// }
 		} catch (SQLException e) {
-			System.err.println(e.getMessage());
+			
+			System.err.println("Erro criando o banco de pedidos (sqlite): " + e.getMessage());
 		} finally {
 			try {
 				// Closing database connection

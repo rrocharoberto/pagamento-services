@@ -3,15 +3,12 @@ package br.inatel.dm112.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "orderList")
+//@XmlRootElement(name = "orderList")
 public class Orders {
 
 	private List<Order> orders = new ArrayList<Order>();
 
-	@XmlElement(name = "orders")
+//	@XmlElement(name = "orders")
 	public List<Order> getOrders() {
 		return orders;
 	}
