@@ -50,4 +50,9 @@ public class MailRequestData {
 		this.content = content;
 	}
 
+	@Override
+	public String toString() {
+		return "MailRequestData [from=" + from + ", password=" + password + ", to=" + to + "]";
+	}
+
 }

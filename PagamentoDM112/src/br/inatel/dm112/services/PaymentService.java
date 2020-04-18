@@ -28,7 +28,13 @@ public class PaymentService {
 	private EmailClient clientEmail = new EmailClient();
 
 	/**
-	 * Lógica de pendência de pagamento
+	 * Lógica de geração de pendência de pagamento
+	 * (1) consulta o pedido pelo número
+	 * (2) atualiza o status do pedido
+	 * (3) gera o boleto
+	 * (4) envia email com o pdf
+	 * (5) retorna sucesso
+	 * 
 	 * @param cpf
 	 * @param orderNumber
 	 * @return
@@ -39,23 +45,23 @@ public class PaymentService {
 			return new PaymentStatus(ResponseStatus.ERROR.ordinal(), cpf, orderNumber);
 		}
 
-		Order order = clientOrder.retrieveOrder(orderNumber); //consulta o pedido pelo número
+		Order order = clientOrder.retrieveOrder(orderNumber); //(1) consulta o pedido pelo número
 
 		if(order != null) { //TODO: alguma hora será preciso verificar o status do pedido aqui
 			order.setIssueDate(new Date());
 			order.setStatus(Order.STATUS.PENDING.ordinal()); //pendente de pagamento
-			OrderResponse respOrder = clientOrder.updateOrder(order); //atualiza o status do pedido
+			OrderResponse respOrder = clientOrder.updateOrder(order); //(2) atualiza o status do pedido
 
 			if(respOrder.getStatus() == ResponseStatus.OK.ordinal()) { //OK
-				BilletGenResponse respBillet = clientBillet.callGenerateBilletService(orderNumber, cpf); //gera o boleto
+				BilletGenResponse respBillet = clientBillet.callGenerateBilletService(orderNumber, cpf); //(3) gera o boleto
 			
 				if(respBillet.getStatus() == ResponseStatus.OK.ordinal()) {//OK
 					byte [] PDFContent = respBillet.getPdfContent();
-					MailStatusResponse respEmail = clientEmail.callSendMailService( //envia email com o pdf
+					MailStatusResponse respEmail = clientEmail.callSendMailService( //(4) envia email com o pdf
 							sendFromAddress, sendPassAddress, sendToAddress , PDFContent);
 				
 					if(respEmail.getStatus() == ResponseStatus.OK.ordinal()) {//OK
-						return new PaymentStatus(ResponseStatus.OK.ordinal(), cpf, orderNumber); //Retorna sucesso
+						return new PaymentStatus(ResponseStatus.OK.ordinal(), cpf, orderNumber); //(5) retorna sucesso
 					} else {
 						System.out.println("Erro no serviço de email");
 					}
@@ -68,11 +74,16 @@ public class PaymentService {
 		} else {
 			System.out.println("Erro no serviço de pedido: get");
 		}
-		return new PaymentStatus(ResponseStatus.ERROR.ordinal(), cpf, orderNumber);
+		return new PaymentStatus(ResponseStatus.ERROR.ordinal(), cpf, orderNumber); //retorna ERRO
 	}
 
 	/**
 	 * Lógica de confirmação de pagamento
+	 * (1) consulta o pedido pelo número
+	 * (2) confirma o pagamento
+	 * (3) atualiza o status do pedido
+	 * (4) responde Ok
+	 * 
 	 * @param cpf
 	 * @param orderNumber
 	 * @return
@@ -83,15 +94,15 @@ public class PaymentService {
 			return new PaymentStatus(ResponseStatus.ERROR.ordinal(), cpf, orderNumber);
 		}
 		
-		Order order = clientOrder.retrieveOrder(orderNumber); //consulta o pedido pelo número
+		Order order = clientOrder.retrieveOrder(orderNumber); //(1) consulta o pedido pelo número
 
 		if(order != null) { //alguma hora vai ser preciso verificar o status do pedido aqui
 			order.setPaymentDate(new Date());
-			order.setStatus(Order.STATUS.CONFIRMED.ordinal()); //confirma o pagamento
-			OrderResponse respOrder = clientOrder.updateOrder(order); //atualiza o status do pedido
+			order.setStatus(Order.STATUS.CONFIRMED.ordinal()); //(2) confirma o pagamento
+			OrderResponse respOrder = clientOrder.updateOrder(order); //(3) atualiza o status do pedido
 
 			if(respOrder.getStatus() == ResponseStatus.OK.ordinal()) { //OK
-				return new PaymentStatus(ResponseStatus.OK.ordinal(), cpf, orderNumber);
+				return new PaymentStatus(ResponseStatus.OK.ordinal(), cpf, orderNumber); //(4) responde Ok
 			} else {
 				System.out.println("Erro no serviço de pedido ao fazer update.");
 			}

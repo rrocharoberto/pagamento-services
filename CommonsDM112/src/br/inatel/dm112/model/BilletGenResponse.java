@@ -30,4 +30,9 @@ public class BilletGenResponse {
 		this.status = status;
 	}
 
+	@Override
+	public String toString() {
+		return "BilletGenResponse [message=" + message + ", status=" + status + "]";
+	}
+
 }

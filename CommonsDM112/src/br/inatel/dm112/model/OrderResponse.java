@@ -15,4 +15,10 @@ public class OrderResponse {
 	public int getStatus() {
 		return status;
 	}
+
+	@Override
+	public String toString() {
+		return "OrderResponse [status=" + status + "]";
+	}
+	
 }

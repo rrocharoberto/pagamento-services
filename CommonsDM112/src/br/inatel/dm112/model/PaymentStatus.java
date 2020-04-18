@@ -41,4 +41,9 @@ public class PaymentStatus {
 		this.orderNumber = orderNumber;
 	}
 
+	@Override
+	public String toString() {
+		return "PaymentStatus [cpf=" + cpf + ", orderNumber=" + orderNumber + ", status=" + status + "]";
+	}
+
 }

@@ -43,4 +43,9 @@ public class MailStatusResponse {
 		this.to = to;
 	}
 
+	@Override
+	public String toString() {
+		return "MailStatusResponse [status=" + status + ", from=" + from + ", to=" + to + "]";
+	}
+
 }
