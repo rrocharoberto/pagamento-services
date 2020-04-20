@@ -9,7 +9,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 import br.inatel.dm112.model.MailRequestData;
 import br.inatel.dm112.model.MailStatusResponse;
-import br.inatel.dm112.model.OrderResponse;
 import reactor.core.publisher.Mono;
 
 public class EmailClient {
@@ -22,14 +21,16 @@ public class EmailClient {
 	
 	public MailStatusResponse callSendMailService(String from, String password, String to, byte[] content) {
 
+		String url = restURL + "sendMail";
+		
 		MailRequestData mrd = new MailRequestData(from, password, to, content);
 		
 		return WebClient
-				.create(restURL + "sendMail")
+				.create(url)
 		        .post()
 		        .contentType(MediaType.APPLICATION_JSON)
 		        .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-		        .body(Mono.just(mrd), OrderResponse.class)
+		        .body(Mono.just(mrd), MailRequestData.class)
 		        .accept(MediaType.APPLICATION_JSON)
 		        .retrieve()
 		        .bodyToFlux(MailStatusResponse.class)

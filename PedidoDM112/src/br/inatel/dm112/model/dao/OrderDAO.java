@@ -25,8 +25,7 @@ public class OrderDAO {
 	}
 
 	public OrderEntity getOrderById(int number) {
-
-		System.out.println("Consultando pedidos com número: " + number);
+		System.out.println("Consultando pedido com número: " + number);
 
 		return entityManager.find(OrderEntity.class, number);
 	}
@@ -55,13 +54,16 @@ public class OrderDAO {
 	}
 
 	private void printOrders(List<OrderEntity> orders) {
-		System.out.println("qtd de pedidos: " + orders.size());
+		System.out.println("Quantidade de pedidos: " + orders.size());
+
 		for (OrderEntity order : orders) {
 			System.out.println(order);
 		}
 	}
 
 	public void updateOrder(OrderEntity o) {
+		System.out.println("Atualizando pedido: " + o.getNumber());
+
 		entityManager.getTransaction().begin();
 		entityManager.merge(o);
 		entityManager.getTransaction().commit();

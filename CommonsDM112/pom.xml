@@ -28,19 +28,6 @@
 	</build>
 
 	<dependencies>
-		<!-- Add Spring MVC and REST support -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-
-		<!-- Add Jackson for JSON/XML converters -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.10.2</version>
-		</dependency>
 
 	</dependencies>
 </project>

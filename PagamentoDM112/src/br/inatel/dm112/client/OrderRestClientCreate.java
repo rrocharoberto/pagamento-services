@@ -12,10 +12,10 @@ public class OrderRestClientCreate {
 
 		Order order = new Order();
 		order.setCpf("111.111.111-11");
-		order.setNumber(456);
+		order.setNumber(789);
 		order.setOrderDate(new Date());
 		order.setStatus(1);
-		order.setValue(500);
+		order.setValue(200);
 
 		OrderResponse resposta = client.createOrder(order);
 

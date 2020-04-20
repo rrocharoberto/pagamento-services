@@ -16,8 +16,10 @@ public class BilletClient {
 
 	public BilletGenResponse callGenerateBilletService(int orderNumber, String cpf) {
 
+		String url = restURL + "generateBillet/" + orderNumber + "/" + cpf;
+		
 		return WebClient
-				.create(restURL + "generateBillet/" + orderNumber + "/" + cpf)
+				.create(url)
 		        .post()
 		        .contentType(MediaType.APPLICATION_JSON)
 		        .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)

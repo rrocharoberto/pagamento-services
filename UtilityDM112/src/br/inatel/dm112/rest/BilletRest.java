@@ -41,7 +41,7 @@ public class BilletRest implements Billet {
 					"Erro gerando o boleto - cpf: " + cpf + " pedido: " + orderNumber + " - " + e.getMessage());
 			result.setStatus(ResponseStatus.ERROR.ordinal());
 		}
-		System.out.println("BilletRest - generateBillet - Resuls: " + result.getMessage());
+		System.out.println("BilletRest - generateBillet - Result: " + result);
 		return result;
 	}
 }

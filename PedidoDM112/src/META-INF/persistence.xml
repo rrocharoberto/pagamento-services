@@ -2,7 +2,7 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
 	version="1.0">
 	<persistence-unit name="pagamentoPU" transaction-type="RESOURCE_LOCAL">
-		<provider>org.hibernate.ejb.HibernatePersistence</provider>
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
    		
 		<properties>
     		<property name="hibernate.show_sql" value="true"/>

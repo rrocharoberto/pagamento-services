@@ -24,11 +24,13 @@ public class OrderRestClient {
 	 */
 	public OrderResponse createOrder(Order order) {
 
-		OrderResponse orderResponse = WebClient.create(restURL + "order")
+		String url = restURL + "order";
+		
+		OrderResponse orderResponse = WebClient.create(url)
 		        .post()
 		        .contentType(MediaType.APPLICATION_JSON)
 		        .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-		        .body(Mono.just(order), OrderResponse.class)
+		        .body(Mono.just(order), Order.class)
 		        .accept(MediaType.APPLICATION_JSON)
 		        .retrieve()
 		        .bodyToFlux(OrderResponse.class)
@@ -46,8 +48,11 @@ public class OrderRestClient {
 	 * @return
 	 */
 	public List<Order> getItems(String cpf) {
-		return WebClient.create(restURL + "orders/" + cpf)
+		String url = restURL + "orders/" + cpf;
+		
+		return WebClient.create(url)
 		        .get()
+		        .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
 		        .retrieve()
 		        .bodyToFlux(Order.class)
 		        .collectList()
@@ -61,7 +66,9 @@ public class OrderRestClient {
 	 * @return
 	 */
 	public Order retrieveOrder(int orderNumber) {
-		return WebClient.create(restURL + "order/" + orderNumber)
+		String url = restURL + "order/" + orderNumber;
+		
+		return WebClient.create(url)
 		        .get()
 		        .retrieve()
 		        .bodyToFlux(Order.class)
@@ -76,11 +83,13 @@ public class OrderRestClient {
 	 */
 	public OrderResponse updateOrder(Order order) {
 
-		OrderResponse orderResponse = WebClient.create(restURL + "order")
+		String url = restURL + "order";
+		
+		OrderResponse orderResponse = WebClient.create(url)
 		        .put()
 		        .contentType(MediaType.APPLICATION_JSON)
 		        .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-		        .body(Mono.just(order), OrderResponse.class)
+		        .body(Mono.just(order), Order.class)
 		        .accept(MediaType.APPLICATION_JSON)
 		        .retrieve()
 		        .bodyToFlux(OrderResponse.class)

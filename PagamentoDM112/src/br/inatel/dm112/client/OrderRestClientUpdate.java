@@ -9,13 +9,16 @@ public class OrderRestClientUpdate {
 
 	public static void main(String[] args) {
 		OrderRestClient client = new OrderRestClient();
+		
+		int orderNumber = 456;
 
-		Order orderToUpdate = client.retrieveOrder(456);
+		Order orderToUpdate = client.retrieveOrder(orderNumber);
 		if (orderToUpdate == null) {
 			System.out.println("Order not found: " + 1);
 			return;
 		}
 
+		//set new values for the order
 		orderToUpdate.setIssueDate(new Date());
 		orderToUpdate.setStatus(0);
 

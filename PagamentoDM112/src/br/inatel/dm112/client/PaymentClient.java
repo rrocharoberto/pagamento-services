@@ -8,7 +8,7 @@ public class PaymentClient {
 	public static void main(String[] args) {
 		PaymentService service = new PaymentService();
 		PaymentStatus result = service.startPaymentOfOrder("111.111.111-11", 456);
-		System.out.println(result);
+		System.out.println("Resultado de startPaymentOfOrder: " + result);
 	}
 
 }

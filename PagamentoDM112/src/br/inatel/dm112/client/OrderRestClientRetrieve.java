@@ -9,17 +9,19 @@ public class OrderRestClientRetrieve {
 	public static void main(String[] args) {
 		OrderRestClient client = new OrderRestClient();
 
-		Order orderResp = client.retrieveOrder(456);
+		int orderNumber = 456;
+		
+		Order orderResp = client.retrieveOrder(orderNumber);
 		if (orderResp == null) {
-			System.out.println("Order not found: " + 1);
+			System.out.println("Order not found: " + orderNumber);
 		} else {
 			System.out.println(orderResp);
 		}
 
-		List<Order> list = client.getItems("111.111.111-11");
+		List<Order> orders = client.getItems("111.111.111-11");
 
 		System.out.println("List of orders retrieved from REST service");
-		for (Order order : list) {
+		for (Order order : orders) {
 			System.out.println(order);
 		}
 	}

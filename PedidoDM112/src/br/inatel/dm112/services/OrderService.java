@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.inatel.dm112.model.Order;
-import br.inatel.dm112.model.Orders;
 import br.inatel.dm112.model.dao.OrderDAO;
 import br.inatel.dm112.model.entities.OrderEntity;
+import br.inatel.dm112.rest.support.OrderDuplicateException;
 import br.inatel.dm112.rest.support.OrderNotFoundException;
 
 @Service
@@ -19,22 +19,22 @@ public class OrderService {
 	private OrderDAO orderDAO;
 
 	public Order getOrder(int orderNumber) {
-		OrderEntity en = orderDAO.getOrderById(orderNumber);
+		
+		OrderEntity entity = orderDAO.getOrderById(orderNumber);
 		Order order = null;
-		if (en != null) {
-			order = new Order(en.getNumber(), en.getCpf(), en.getValue(), en.getStatus(), en.getOrderDate(),
-					en.getIssueDate(), en.getPaymentDate());
+		if (entity != null) {
+			order = convertToOrder(entity);
 		}
 		return order;
 	}
 
-	public Orders searchOrders(String cpf) {
+	public List<Order> searchOrders(String cpf) {
+		
 		List<OrderEntity> entities = orderDAO.getOrdersByCPF(cpf);
-		Orders orders = new Orders();
-		for (OrderEntity en : entities) {
-			Order order = new Order(en.getNumber(), en.getCpf(), en.getValue(), en.getStatus(), en.getOrderDate(),
-					en.getIssueDate(), en.getPaymentDate());
-			orders.addOrder(order);
+		List<Order> orders = new ArrayList<Order>();
+		for (OrderEntity entity : entities) {
+			Order order = convertToOrder(entity);
+			orders.add(order);
 		}
 		return orders;
 	}
@@ -43,15 +43,9 @@ public class OrderService {
 
 		OrderEntity entity = orderDAO.getOrderById(order.getNumber());
 		if (entity != null) {
-			// entity.setNumber(order.getNumber()); //don't change the PK
-			entity.setCpf(order.getCpf());
-			entity.setValue(order.getValue());
-			entity.setStatus(order.getStatus());
-			entity.setOrderDate(order.getOrderDate());
-			entity.setIssueDate(order.getIssueDate());
-			entity.setPaymentDate(order.getPaymentDate());
+			convertOrderToEntityWithoutPK(order, entity); //don't change PK
 			orderDAO.updateOrder(entity);
-			System.out.println("OrderImpl updateOrder - atualizou a order com número: " + order.getNumber());
+			System.out.println("OrderImpl updateOrder - atualizou o pedido com número: " + order.getNumber());
 		} else {
 			throw new OrderNotFoundException(
 					"Pedido não encontrado para fazer update: cpf: " + order.getCpf() + "valor: " + order.getValue());
@@ -64,17 +58,12 @@ public class OrderService {
 		if (entity == null) {
 			entity = new OrderEntity();
 			entity.setNumber(order.getNumber());
-			entity.setCpf(order.getCpf());
-			entity.setValue(order.getValue());
-			entity.setStatus(order.getStatus());
-			entity.setOrderDate(order.getOrderDate());
-			entity.setIssueDate(order.getIssueDate());
-			entity.setPaymentDate(order.getPaymentDate());
+			convertOrderToEntityWithoutPK(order, entity);
 
-			System.out.println("OrderImpl updateOrder - order não encontrado com número: " + order.getNumber());
+			System.out.println("OrderImpl updateOrder - pedido não encontrado com número: " + order.getNumber());
 			orderDAO.insert(entity);
 		} else {
-			throw new OrderNotFoundException("Pedido já existe: " + order.getNumber());//TODO: melhorar a semântica
+			throw new OrderDuplicateException("Pedido já existe: " + order.getNumber());//TODO: melhorar a semântica
 		}
 	}
 
@@ -83,16 +72,31 @@ public class OrderService {
 		List<Order> orders = new ArrayList<>();
 
 		for (OrderEntity entity : entities) {
-			Order order = new Order();
-			order.setNumber(entity.getNumber());
-			order.setCpf(entity.getCpf());
-			order.setValue(entity.getValue());
-			order.setStatus(entity.getStatus());
-			order.setOrderDate(entity.getOrderDate());
-			order.setIssueDate(entity.getIssueDate());
-			order.setPaymentDate(entity.getPaymentDate());
+			Order order = convertToOrder(entity);
 			orders.add(order);
 		}
 		return orders;
 	}
+
+	private Order convertToOrder(OrderEntity entity) {
+		Order order = new Order(
+				entity.getNumber(), 
+				entity.getCpf(), 
+				entity.getValue(), 
+				entity.getStatus(), 
+				entity.getOrderDate(),
+				entity.getIssueDate(), 
+				entity.getPaymentDate());
+		return order;
+	}
+
+	private void convertOrderToEntityWithoutPK(Order order, OrderEntity entity) {
+		entity.setCpf(order.getCpf());
+		entity.setValue(order.getValue());
+		entity.setStatus(order.getStatus());
+		entity.setOrderDate(order.getOrderDate());
+		entity.setIssueDate(order.getIssueDate());
+		entity.setPaymentDate(order.getPaymentDate());
+	}
+	
 }

@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.inatel.dm112.interfaces.OrderInterface;
 import br.inatel.dm112.model.Order;
 import br.inatel.dm112.model.OrderResponse;
-import br.inatel.dm112.model.Orders;
 import br.inatel.dm112.model.ResponseStatus;
+import br.inatel.dm112.rest.support.OrderDuplicateException;
 import br.inatel.dm112.rest.support.OrderNotFoundException;
 import br.inatel.dm112.rest.support.OrderResponseError;
 import br.inatel.dm112.services.OrderService;
@@ -40,7 +40,7 @@ public class OrderRest implements OrderInterface {
 
 	@Override
 	@GetMapping("/orders/{cpf:.+}")
-	public Orders searchOrders(@PathVariable("cpf") String cpf) {
+	public List<Order> searchOrders(@PathVariable("cpf") String cpf) {
 
 		System.out.println("OrderRest - searchOrders");
 		return orderService.searchOrders(cpf);
@@ -82,5 +82,17 @@ public class OrderRest implements OrderInterface {
 		error.setMessage(ex.getMessage());
 		error.setTimeStamp(System.currentTimeMillis());
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+	}
+	
+	@ExceptionHandler
+	public ResponseEntity<OrderResponseError> handlerException(OrderDuplicateException ex) {
+		
+		ex.printStackTrace();
+
+		OrderResponseError error = new OrderResponseError(); // create OrderResponseError
+		error.setStatus(HttpStatus.CONFLICT.value());
+		error.setMessage(ex.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		return new ResponseEntity<>(error, HttpStatus.CONFLICT);
 	}
 }
