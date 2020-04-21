@@ -61,13 +61,6 @@
 			<version>2.10.2</version>
 		</dependency>
 
-		<!-- Used for email support -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-context-support</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-		
 		<!-- Add Servlet support for Spring's AbstractAnnotationConfigDispatcherServletInitializer -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
