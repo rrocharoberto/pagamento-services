@@ -12,11 +12,12 @@
 
     <modules>
         <module>CommonsDM112</module>
+        <module>ExemploDM112_GAE</module>
         <module>ExemploDM112_OS</module>
-        <!--module>ExemploDM112_GAE</module-->
         <module>PagamentoDM112</module>
         <module>PedidoDM112</module>
         <module>UtilityDM112</module>
+        <module>ExemploServletDM112</module>
     </modules>
 
     <build>
