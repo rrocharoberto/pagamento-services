@@ -2,10 +2,22 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Index file</title>
+<title>Serviços de ExemploDM112_GAE</title>
 </head>
 <body>
-
-<h1>Success with the ExemploDM112_GAE project.</h1>
+<h1>File index.jsp ok!</h1>
+<br/>
+<h2>Serviços disponíveis:</h2>
+<br/>
+<a href="https://dm112project.appspot.com/api/orders">Busca todos os pedidos</a>
+<br/>
+Outras opções disponíveis:
+<br/>
+https://dm112project.appspot.com/api/order/{cpf}
+<br/>
+https://dm112project.appspot.com/api/order/{número}
+<br/>
+<br/>
+<br/>
 </body>
 </html>

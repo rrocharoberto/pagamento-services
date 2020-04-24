@@ -3,7 +3,8 @@
         <wb-resource deploy-path="/" source-path="/target/m2e-wtp/web-resources"/>
         <wb-resource deploy-path="/" source-path="/src/main/webapp" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/test/java"/>
         <property name="context-root" value="ExemploDM112_GAE"/>
-        <property name="java-output-path" value="/ExemploDM112_GAE/target/ExemploDM112_GAE-1.0/WEB-INF/classes"/>
+        <property name="java-output-path" value="/ExemploDM112_GAE/build/classes"/>
     </wb-module>
 </project-modules>
