@@ -7,16 +7,18 @@ public class MailStatusResponse {
 	private int status;
 	private String from;
 	private String to;
+	private String message;
 
 	public MailStatusResponse() {
 
 	}
 
-	public MailStatusResponse(int status, String from, String to) {
+	public MailStatusResponse(int status, String from, String to, String message) {
 		super();
 		this.status = status;
 		this.from = from;
 		this.to = to;
+		this.message = message;
 	}
 
 	public int getStatus() {
@@ -43,9 +45,16 @@ public class MailStatusResponse {
 		this.to = to;
 	}
 
-	@Override
-	public String toString() {
-		return "MailStatusResponse [status=" + status + ", from=" + from + ", to=" + to + "]";
+	public String getMessage() {
+		return message;
+	}
+	
+	public void setMessage(String message) {
+		this.message = message;
 	}
 
+	@Override
+	public String toString() {
+		return "MailStatusResponse [status=" + status + ", from=" + from + ", to=" + to + ", message=" + message + "]";
+	}
 }
