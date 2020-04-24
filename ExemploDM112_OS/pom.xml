@@ -40,13 +40,6 @@
 	</build>
 
 	<dependencies>
-		<dependency>
-			<groupId>br.inatel.dm112</groupId>
-			<artifactId>CommonsDM112</artifactId>
-			<version>1.0</version>
-			<type>jar</type>
-		</dependency>
-
 		<!-- Add Spring MVC and REST support -->
 		<dependency>
 			<groupId>org.springframework</groupId>

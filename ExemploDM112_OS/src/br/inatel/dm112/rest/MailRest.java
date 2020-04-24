@@ -20,9 +20,9 @@ public class MailRest implements Email {
 
 	@Override
 	@PostMapping(value = "/sendMail")
-	//@GetMapping(value = "/sendMail", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_XML_VALUE)
 	public MailStatusResponse sendMail(@RequestBody MailRequestData mailData) {
 
+		System.out.println("MailRest - sendMail");
 		return service.sendMail(mailData);
 	}
 

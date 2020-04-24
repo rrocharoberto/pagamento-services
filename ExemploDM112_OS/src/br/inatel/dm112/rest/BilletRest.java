@@ -20,11 +20,12 @@ public class BilletRest implements Billet {
 
 	@Override
 	//https://stackoverflow.com/questions/16332092/spring-mvc-pathvariable-with-dot-is-getting-truncated
-	@PostMapping(value = "/generateBillet/{orderNumber}/{cpf:.+}")//, produces = MediaType.APPLICATION_XML_VALUE)
+	@PostMapping(value = "/generateBillet/{orderNumber}/{cpf:.+}")
 	public BilletGenResponse generateBillet(
 									@PathVariable("orderNumber") String orderNumber, 
 									@PathVariable("cpf") String cpf) {
 		
+		System.out.println("BilletRest - generateBillet");
 		BilletGenResponse result = new BilletGenResponse();
 		try {
 			// gera o pdf e obtem os bytes
@@ -40,7 +41,7 @@ public class BilletRest implements Billet {
 					"Erro gerando o boleto - cpf: " + cpf + " pedido: " + orderNumber + " - " + e.getMessage());
 			result.setStatus(ResponseStatus.ERROR.ordinal());
 		}
-		System.out.println(result.getMessage());
+		System.out.println("BilletRest - generateBillet - Result: " + result);
 		return result;
 	}
 }

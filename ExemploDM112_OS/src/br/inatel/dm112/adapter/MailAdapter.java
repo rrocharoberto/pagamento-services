@@ -16,14 +16,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.mail.javamail.JavaMailSender;
-
 public class MailAdapter {
 
-	//@Autowired
-	//private JavaMailSender mailSender;
-	
 	public void sendMail(final String from, final String password, String to, byte[] content) {
 
 		System.out.println("Enviando email para: " + to);
@@ -34,10 +28,6 @@ public class MailAdapter {
 		props.put("mail.smtp.host", "smtp.gmail.com");
 		props.put("mail.smtp.port", "587");
 
-//	    mailSender.setUsername("my.gmail@gmail.com");
-//	    mailSender.setPassword("password");
-
-	    
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(from, password);
