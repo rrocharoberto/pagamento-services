@@ -7,13 +7,9 @@
 <body>
 <h1>File index.jsp ok!</h1>
 <br/>
-Serviços disponíveis:
+<h2>Serviços disponíveis:</h2>
 <br/>
-<a href="localhost:8080/ExemploDM112_OS/api/sendMail/">Geração de boletos</a>
-<br/>
-O corpo do email deve possuir um JSON
-<br/>
-<a href="#">Envio de email</a>
+POST: <a href="http://localhost:8080/UtilityDM112/api/generateBillet/{order}/{cpf}">Geração de boletos</a>
 <br/>
 </body>
 </html>

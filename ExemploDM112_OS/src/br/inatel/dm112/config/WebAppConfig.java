@@ -6,7 +6,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import br.inatel.dm112.service.BilletService;
-import br.inatel.dm112.service.MailService;
 
 @Configuration
 @EnableWebMvc
@@ -18,8 +17,4 @@ public class WebAppConfig {
 		return new BilletService();
 	}
 
-	@Bean
-	public MailService mailService() {
-		return new MailService();
-	}
 }
