@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.inatel.dm112</groupId>
@@ -9,12 +11,12 @@
 
 	<properties>
 		<!-- editar de acordo com o projeto criado no Google Cloud -->
-        <app.id>dm112exemplo1</app.id>
-        <app.version>1</app.version>
-        
-        <appengine.version>1.9.59</appengine.version>
-        <gcloud.plugin.version>2.0.9.74.v20150814</gcloud.plugin.version>
-        <maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
+		<app.id>dm112exemplo1</app.id>
+		<app.version>1</app.version>
+
+		<appengine.version>1.9.59</appengine.version>
+		<gcloud.plugin.version>2.0.9.74.v20150814</gcloud.plugin.version>
+		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
 
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
@@ -24,24 +26,45 @@
 		<hibernate.version>5.4.10.Final</hibernate.version>
 	</properties>
 
-    <prerequisites>
-        <maven>3.1.0</maven>
-    </prerequisites>
+	<prerequisites>
+		<maven>3.1.0</maven>
+	</prerequisites>
 
-    <dependencies>
-        <!-- Compile/runtime dependencies -->
-        <dependency>
-            <groupId>com.google.appengine</groupId>
-            <artifactId>appengine-api-1.0-sdk</artifactId>
-            <version>${appengine.version}</version>
-        </dependency>
-
-        <!-- Adicionados por Roberto Rocha -->
+	<dependencies>
+	
+		<!-- Dependencies copied from Google -->
 		<dependency>
-			<groupId>br.inatel.dm112</groupId>
-			<artifactId>CommonsDM112</artifactId>
-			<version>1.0</version>
-			<type>jar</type>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-endpoints</artifactId>
+			<version>1.9.73</version>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.persistence</groupId>
+			<artifactId>javax.persistence</artifactId>
+			<version>2.1.0</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.inject</groupId>
+			<artifactId>javax.inject</artifactId>
+			<version>1</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.findbugs</groupId>
+			<artifactId>jsr305</artifactId>
+			<version>3.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.appengine.orm</groupId>
+			<artifactId>datanucleus-appengine</artifactId>
+			<version>2.1.2</version>
+		</dependency>
+
+
+		<!-- Compile/runtime dependencies -->
+		<dependency>
+			<groupId>com.google.appengine</groupId>
+			<artifactId>appengine-api-1.0-sdk</artifactId>
+			<version>${appengine.version}</version>
 		</dependency>
 
 		<!-- Add Spring MVC and REST support -->
@@ -79,50 +102,56 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-    </dependencies>
+	</dependencies>
 
-    <build>
-        <!-- for hot reload of the web application-->
-        <outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <version>3.1</version>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
+	<build>
+		<!-- for hot reload of the web application -->
+		<outputDirectory>${project.build.directory}/${project.build.finalName}/WEB-INF/classes</outputDirectory>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<version>3.1</version>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-war-plugin</artifactId>
+				<version>2.4</version>
+				<configuration>
 					<failOnMissingWebXml>false</failOnMissingWebXml>
-                    <archiveClasses>true</archiveClasses>
-                </configuration>
-            </plugin>
-		<!-- nova versão do appengine maven plugin -->
-		<plugin>
-            <groupId>com.google.cloud.tools</groupId>
-            <artifactId>appengine-maven-plugin</artifactId>
-            <version>2.2.0</version>
-            <configuration>
-                <projectId>${app.id}</projectId>
-                <version>${app.version}</version>
-            </configuration>
-        </plugin>
+					<archiveClasses>true</archiveClasses>
+				</configuration>
+			</plugin>
+			<!-- nova versão do appengine maven plugin -->
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>appengine-maven-plugin</artifactId>
+				<version>2.2.0</version>
+				<configuration>
+					<projectId>${app.id}</projectId>
+					<version>${app.version}</version>
+				</configuration>
+			</plugin>
 
 
-            <plugin>
-              <groupId>com.google.appengine</groupId>
-              <artifactId>gcloud-maven-plugin</artifactId>
-              <version>${gcloud.plugin.version}</version>
-              <configuration>
-                <set_default>true</set_default>
-              </configuration>
-            </plugin>
-        </plugins>
-    </build>
+			<plugin>
+				<groupId>com.google.appengine</groupId>
+				<artifactId>gcloud-maven-plugin</artifactId>
+				<version>${gcloud.plugin.version}</version>
+				<configuration>
+					<set_default>true</set_default>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>endpoints-framework-maven-plugin</artifactId>
+				<version>1.0.0</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>
