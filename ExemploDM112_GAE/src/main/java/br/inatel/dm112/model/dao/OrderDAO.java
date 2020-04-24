@@ -5,14 +5,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
-import br.inatel.dm112.model.entities.Order;
+import br.inatel.dm112.model.entities.OrderEntity;
 
 public class OrderDAO {
 
-	private static HashMap<Integer, Order> orders = new HashMap<Integer, Order>();
+	private static HashMap<Integer, OrderEntity> orders = new HashMap<Integer, OrderEntity>();
 
 	static {
-		Order order = new Order();
+		OrderEntity order = new OrderEntity();
 		order.setCpf("123");
 		order.setNumber(123);
 		order.setOrderDate(new Date());
@@ -21,7 +21,7 @@ public class OrderDAO {
 		
 		orders.put(order.getNumber(), order);
 
-		order = new Order();
+		order = new OrderEntity();
 		order.setCpf("123");
 		order.setNumber(234);
 		order.setOrderDate(new Date());
@@ -30,18 +30,18 @@ public class OrderDAO {
 		
 		orders.put(order.getNumber(), order);
 }
-	public void insert(Order o) {
+	public void insert(OrderEntity o) {
 		orders.put(o.getNumber(), o);
 	}
 
-	public Order getOrderById(int number) {
+	public OrderEntity getOrderById(int number) {
 		return orders.get(number);
 	}
 
-	public List<Order> getOrdersByCPF(String cpf) {
-		List<Order> list = new ArrayList<Order>();
+	public List<OrderEntity> getOrdersByCPF(String cpf) {
+		List<OrderEntity> list = new ArrayList<OrderEntity>();
 
-		for (Order order : orders.values()) {
+		for (OrderEntity order : orders.values()) {
 			if (order.getCpf().equals(cpf)) {
 				list.add(order);
 			}
@@ -50,7 +50,11 @@ public class OrderDAO {
 		return list;
 	}
 
-	public void updateOrder(Order o) {
+	public void updateOrder(OrderEntity o) {
 		orders.put(o.getNumber(), o);
+	}
+
+	public List<OrderEntity> getAllOrders() {
+		return new ArrayList<>(orders.values());
 	}
 }

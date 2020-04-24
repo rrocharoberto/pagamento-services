@@ -1,17 +1,17 @@
 package br.inatel.dm112.interfaces;
 
-import javax.ws.rs.Path;
+import java.util.List;
 
+import br.inatel.dm112.model.Order;
 import br.inatel.dm112.model.OrderResponse;
-import br.inatel.dm112.model.Orders;
 
-@Path("/")
 public interface OrderInterface {
 
-	public br.inatel.dm112.model.entities.Order getOrder(int orderNumber);
+	public Order getOrder(int orderNumber);
 
-	public Orders searchOrders(String cpf);
+	public List<Order> searchOrders(String cpf);
 
-	public OrderResponse updateOrder(br.inatel.dm112.model.entities.Order order);
+	public OrderResponse updateOrder(Order order);
 
+	public List<Order> getAllOrders();
 }

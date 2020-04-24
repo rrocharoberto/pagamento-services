@@ -1,8 +1,5 @@
 package br.inatel.dm112.model;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement(name = "orderResponse")
 public class OrderResponse {
 
 	private int status;
@@ -19,7 +16,9 @@ public class OrderResponse {
 		return status;
 	}
 
-	public void setStatus(int status) {
-		this.status = status;
+	@Override
+	public String toString() {
+		return "OrderResponse [status=" + status + "]";
 	}
+	
 }
