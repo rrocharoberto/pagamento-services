@@ -47,12 +47,6 @@
 			<version>1.0</version>
 			<type>jar</type>
 		</dependency>
-		<dependency>
-			<groupId>br.inatel.dm112</groupId>
-			<artifactId>PedidoDM112</artifactId>
-			<version>1.0</version>
-			<type>war</type>
-		</dependency>
 
 		<!-- Add Spring MVC and REST support -->
 		<dependency>
