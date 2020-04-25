@@ -14,8 +14,9 @@ public class OrderRestClient {
 
 	// local
 	private String restURL = "http://localhost:8080/PedidoDM112/api/";
-	//GAE:
-	//private String restURL = "http://exemplodm112.appspot.com/rest/";
+	
+	// GAE:
+	//private String restURL = "https://dm112project.appspot.com/api/";
 
 	/**
 	 * createOrder

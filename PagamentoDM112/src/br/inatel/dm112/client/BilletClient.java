@@ -13,7 +13,8 @@ public class BilletClient {
 
 	// local
 	private String restURL = "http://localhost:8080/UtilityDM112/api/";
-	//OpenShift
+	
+	// OpenShift
 	//private String restURL = "http://dm112-dm112project.apps.ca-central-1.starter.openshift-online.com/ExemploDM112_OS/api/";
 
 	public BilletGenResponse callGenerateBilletService(int orderNumber, String cpf) {

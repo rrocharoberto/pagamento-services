@@ -13,7 +13,7 @@ public class OrderDAO {
 
 	static {
 		OrderEntity order = new OrderEntity();
-		order.setCpf("123");
+		order.setCpf("111.111.111-11");
 		order.setNumber(123);
 		order.setOrderDate(new Date());
 		order.setStatus(1);
@@ -22,8 +22,8 @@ public class OrderDAO {
 		orders.put(order.getNumber(), order);
 
 		order = new OrderEntity();
-		order.setCpf("123");
-		order.setNumber(234);
+		order.setCpf("111.111.111-11");
+		order.setNumber(456);
 		order.setOrderDate(new Date());
 		order.setStatus(0);
 		order.setValue(234.56f);
