@@ -16,6 +16,10 @@ public class PaymentStatus {
 		this.cpf = cpf;
 		this.orderNumber = orderNumber;
 	}
+	
+	public static PaymentStatus createErrorStatus(String cpf, int orderNumber) {
+		return new PaymentStatus(ResponseStatus.ERROR.ordinal(), cpf, orderNumber);
+	}
 
 	public int getStatus() {
 		return status;

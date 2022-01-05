@@ -52,7 +52,7 @@ public class OrderRest implements OrderInterface {
 
 		System.out.println("OrderRest - updateOrder");
 		orderService.updateOrder(order);
-		return new OrderResponse(ResponseStatus.OK.ordinal());
+		return new OrderResponse(order.getNumber(), ResponseStatus.OK.ordinal());
 	}
 
 	//usado para teste
@@ -69,7 +69,7 @@ public class OrderRest implements OrderInterface {
 
 		System.out.println("OrderRest - saveNewOrder");
 		orderService.createOrder(newOrder);
-		return new OrderResponse(ResponseStatus.OK.ordinal());
+		return new OrderResponse(newOrder.getNumber(), ResponseStatus.OK.ordinal());
 	}
 	
 	@ExceptionHandler

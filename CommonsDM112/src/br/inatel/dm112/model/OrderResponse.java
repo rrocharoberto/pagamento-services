@@ -2,14 +2,21 @@ package br.inatel.dm112.model;
 
 public class OrderResponse {
 
+	private int number;
+
 	private int status;
 
 	public OrderResponse() {
 
 	}
 
-	public OrderResponse(int status) {
+	public OrderResponse(int number, int status) {
+		this.number = number;
 		this.status = status;
+	}
+
+	public int getNumber() {
+		return number;
 	}
 
 	public int getStatus() {
@@ -18,7 +25,6 @@ public class OrderResponse {
 
 	@Override
 	public String toString() {
-		return "OrderResponse [status=" + status + "]";
+		return "OrderResponse [number=" + number + ", status=" + status + "]";
 	}
-	
 }

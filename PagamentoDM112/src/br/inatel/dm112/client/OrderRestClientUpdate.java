@@ -24,7 +24,7 @@ public class OrderRestClientUpdate {
 
 		OrderResponse resposta = client.updateOrder(orderToUpdate);
 
-		System.out.println("Status do update do pedido " + orderToUpdate.getNumber() + ":  " + resposta.getStatus());
+		System.out.println("Status do update do pedido " + resposta.getNumber() + ":  " + resposta.getStatus());
 	}
 
 }

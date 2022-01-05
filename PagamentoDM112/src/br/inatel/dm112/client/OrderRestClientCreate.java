@@ -22,7 +22,7 @@ public class OrderRestClientCreate {
 
 		OrderResponse resposta = client.createOrder(order);
 
-		System.out.println("Status do update do pedido " + order.getNumber() + ":  " + resposta.getStatus());
+		System.out.println("Status do update do pedido " + resposta.getNumber() + ":  " + resposta.getStatus());
 	}
 
 }
