@@ -7,11 +7,11 @@ import br.inatel.dm112.model.OrderResponse;
 
 public interface OrderInterface {
 
-	public Order getOrder(int orderNumber);
+	public Order getOrder(Integer orderNumber);
 
 	public List<Order> searchOrders(String cpf);
 
-	public OrderResponse updateOrder(Order order);
+	public OrderResponse updateOrder(Order order, Integer orderNumber);
 
 	public List<Order> getAllOrders();
 }

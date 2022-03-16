@@ -1,6 +1,9 @@
 package br.inatel.dm112.rest;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,14 +25,14 @@ import br.inatel.dm112.services.OrderService;
 public class OrderRest implements OrderInterface {
 
 	@Autowired
-	private OrderService orderService;
+	private OrderService service;
 
 	@Override
 	@GetMapping("/orders/{orderNumber}")
-	public Order getOrder(@PathVariable("orderNumber") int orderNumber) {
+	public Order getOrder(@PathVariable("orderNumber") Integer orderNumber) {
 
 		System.out.println("OrderRest - getOrder");
-		return orderService.getOrder(orderNumber);
+		return OrderService.convertToOrder(service.getOrder(orderNumber));
 	}
 
 	@Override
@@ -37,33 +40,33 @@ public class OrderRest implements OrderInterface {
 	public List<Order> searchOrders(@PathVariable("cpf") String cpf) {
 
 		System.out.println("OrderRest - searchOrders");
-		return orderService.searchOrders(cpf);
+		return service.searchOrdersByCPF(cpf).stream().map(OrderService::convertToOrder).collect(Collectors.toList());
 	}
 
 	@Override
-	@PutMapping("/orders")
-	public OrderResponse updateOrder(@RequestBody Order order) {
+	@PutMapping("/orders/{orderNumber}")
+	public OrderResponse updateOrder(@RequestBody Order order, @PathParam("orderNumber") Integer orderNumber) {
 
 		System.out.println("OrderRest - updateOrder");
-		orderService.updateOrder(order);
+		service.updateOrder(order, orderNumber);
 		return new OrderResponse(order.getNumber(), ResponseStatus.OK.ordinal());
 	}
 
-	//usado para teste
+	// usado para teste
 	@Override
 	@GetMapping("/orders")
 	public List<Order> getAllOrders() {
 
 		System.out.println("OrderRest - getAllOrders");
-		return orderService.getAllOrders();
+		return service.getAllOrders();
 	}
 
 	@PostMapping("/orders")
 	public OrderResponse saveNewOrder(@RequestBody Order newOrder) {
 
 		System.out.println("OrderRest - saveNewOrder");
-		orderService.createOrder(newOrder);
+		service.createOrder(newOrder);
 		return new OrderResponse(newOrder.getNumber(), ResponseStatus.OK.ordinal());
 	}
-	
+
 }

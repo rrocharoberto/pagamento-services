@@ -15,12 +15,12 @@ public class Order {
 
 	private int status;
 
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date orderDate;
 
 	private Date issueDate;
 
 	private Date paymentDate;
-
 	
 	public Order() {
 	}

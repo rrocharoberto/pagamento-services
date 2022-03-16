@@ -9,6 +9,13 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <name>Projects used in DM112 classes</name>
+    
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<spring.boot.version>2.6.3</spring.boot.version>
+	</properties>
 
     <modules>
         <module>CommonsDM112</module>
