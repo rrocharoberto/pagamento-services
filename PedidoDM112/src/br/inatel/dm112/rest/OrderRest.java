@@ -3,9 +3,6 @@ package br.inatel.dm112.rest;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,9 +15,6 @@ import br.inatel.dm112.interfaces.OrderInterface;
 import br.inatel.dm112.model.Order;
 import br.inatel.dm112.model.OrderResponse;
 import br.inatel.dm112.model.ResponseStatus;
-import br.inatel.dm112.rest.support.OrderDuplicateException;
-import br.inatel.dm112.rest.support.OrderNotFoundException;
-import br.inatel.dm112.rest.support.OrderResponseError;
 import br.inatel.dm112.services.OrderService;
 
 @RestController
@@ -31,7 +25,7 @@ public class OrderRest implements OrderInterface {
 	private OrderService orderService;
 
 	@Override
-	@GetMapping("/order/{orderNumber}")
+	@GetMapping("/orders/{orderNumber}")
 	public Order getOrder(@PathVariable("orderNumber") int orderNumber) {
 
 		System.out.println("OrderRest - getOrder");
@@ -39,7 +33,7 @@ public class OrderRest implements OrderInterface {
 	}
 
 	@Override
-	@GetMapping("/orders/{cpf:.+}")
+	@GetMapping("/orders/customer/{cpf:.+}")
 	public List<Order> searchOrders(@PathVariable("cpf") String cpf) {
 
 		System.out.println("OrderRest - searchOrders");
@@ -47,7 +41,7 @@ public class OrderRest implements OrderInterface {
 	}
 
 	@Override
-	@PutMapping("/order")
+	@PutMapping("/orders")
 	public OrderResponse updateOrder(@RequestBody Order order) {
 
 		System.out.println("OrderRest - updateOrder");
@@ -64,7 +58,7 @@ public class OrderRest implements OrderInterface {
 		return orderService.getAllOrders();
 	}
 
-	@PostMapping("order")
+	@PostMapping("/orders")
 	public OrderResponse saveNewOrder(@RequestBody Order newOrder) {
 
 		System.out.println("OrderRest - saveNewOrder");
@@ -72,27 +66,4 @@ public class OrderRest implements OrderInterface {
 		return new OrderResponse(newOrder.getNumber(), ResponseStatus.OK.ordinal());
 	}
 	
-	@ExceptionHandler
-	public ResponseEntity<OrderResponseError> handlerException(OrderNotFoundException ex) {
-		
-		ex.printStackTrace();
-
-		OrderResponseError error = new OrderResponseError(); // create OrderResponseError
-		error.setStatus(HttpStatus.NOT_FOUND.value());
-		error.setMessage(ex.getMessage());
-		error.setTimeStamp(System.currentTimeMillis());
-		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
-	}
-	
-	@ExceptionHandler
-	public ResponseEntity<OrderResponseError> handlerException(OrderDuplicateException ex) {
-		
-		ex.printStackTrace();
-
-		OrderResponseError error = new OrderResponseError(); // create OrderResponseError
-		error.setStatus(HttpStatus.CONFLICT.value());
-		error.setMessage(ex.getMessage());
-		error.setTimeStamp(System.currentTimeMillis());
-		return new ResponseEntity<>(error, HttpStatus.CONFLICT);
-	}
 }

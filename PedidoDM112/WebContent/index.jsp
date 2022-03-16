@@ -13,9 +13,9 @@ Serviços disponíveis:
 <br/>
 Outras opções disponíveis:
 <br/>
-http://localhost:8080/PedidoDM112/api/order/{cpf}
+http://localhost:8080/PedidoDM112/api/orders/{número}
 <br/>
-http://localhost:8080/PedidoDM112/api/order/{número}
+http://localhost:8080/PedidoDM112/api/orders/customer/{cpf}
 <br/>
 <br/>
 <br/>

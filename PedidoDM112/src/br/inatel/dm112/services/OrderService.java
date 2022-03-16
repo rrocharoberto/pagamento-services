@@ -42,29 +42,27 @@ public class OrderService {
 	public void updateOrder(Order order) {
 
 		OrderEntity entity = orderDAO.getOrderById(order.getNumber());
-		if (entity != null) {
-			convertOrderToEntityWithoutPK(order, entity); //don't change PK
-			orderDAO.updateOrder(entity);
-			System.out.println("OrderImpl updateOrder - atualizou o pedido com número: " + order.getNumber());
-		} else {
+		if (entity == null) {
 			throw new OrderNotFoundException(
 					"Pedido não encontrado para fazer update: cpf: " + order.getCpf() + "valor: " + order.getValue());
 		}
+		convertOrderToEntityWithoutPK(order, entity); //don't change PK
+		orderDAO.updateOrder(entity);
+		System.out.println("OrderImpl updateOrder - atualizou o pedido com número: " + order.getNumber());
 	}
 
 	public void createOrder(Order order) {
 
 		OrderEntity entity = orderDAO.getOrderById(order.getNumber());
-		if (entity == null) {
-			entity = new OrderEntity();
-			entity.setNumber(order.getNumber());
-			convertOrderToEntityWithoutPK(order, entity);
-
-			System.out.println("OrderImpl updateOrder - pedido não encontrado com número: " + order.getNumber());
-			orderDAO.insert(entity);
-		} else {
+		if (entity != null) {
 			throw new OrderDuplicateException("Pedido já existe: " + order.getNumber());//TODO: melhorar a semântica
 		}
+		entity = new OrderEntity();
+		entity.setNumber(order.getNumber());
+		convertOrderToEntityWithoutPK(order, entity);
+
+		System.out.println("OrderImpl updateOrder - pedido não encontrado com número: " + order.getNumber());
+		orderDAO.insert(entity);
 	}
 
 	public List<Order> getAllOrders() {

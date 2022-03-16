@@ -1,14 +1,14 @@
 package br.inatel.dm112.rest.support;
 
-public class OrderResponseError {
+public class OrderStandardError {
 	private int status;
 	private String message;
 	private long timeStamp;
 
-	public OrderResponseError() {
+	public OrderStandardError() {
 	}
 
-	public OrderResponseError(int status, String message, long timeStamp) {
+	public OrderStandardError(int status, String message, long timeStamp) {
 		super();
 		this.status = status;
 		this.message = message;
