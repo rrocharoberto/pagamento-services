@@ -58,7 +58,7 @@ public class OrderService {
 	}
 
 	private void updateOrderData(Order order, OrderEntity entity) {
-		entity.setCpf(order.getCpf());
+		entity.setCPF(order.getCpf());
 		entity.setValue(order.getValue());
 		entity.setStatus(order.getStatus());
 		entity.setOrderDate(order.getOrderDate());
@@ -67,14 +67,14 @@ public class OrderService {
 	}
 
 	public static Order convertToOrder(OrderEntity entity) {
-		Order order = new Order(entity.getNumber(), entity.getCpf(), entity.getValue(), entity.getStatus(),
+		Order order = new Order(entity.getNumber(), entity.getCPF(), entity.getValue(), entity.getStatus(),
 				entity.getOrderDate(), entity.getIssueDate(), entity.getPaymentDate());
 		return order;
 	}
 
 	public static OrderEntity convertToEntity(Order order) {
 		OrderEntity entity = new OrderEntity();
-		entity.setCpf(order.getCpf());
+		entity.setCPF(order.getCpf());
 		entity.setValue(order.getValue());
 		entity.setStatus(order.getStatus());
 		entity.setOrderDate(order.getOrderDate());

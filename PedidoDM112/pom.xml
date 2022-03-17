@@ -11,7 +11,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.3</version>
+		<version>2.2.6.RELEASE</version>
 		<relativePath />
 	</parent>
 
@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>br.inatel.dm112</groupId>
 			<artifactId>CommonsDM112</artifactId>
-			<version>${project.version}</version>
+			<version>1.0</version>
 			<type>jar</type>
 		</dependency>
 
@@ -43,6 +43,12 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 
 		<!-- SQLite -->

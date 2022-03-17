@@ -13,10 +13,12 @@ import reactor.core.publisher.Mono;
 public class OrderRestClient {
 
 	// local
-	private String restURL = "http://localhost:8080/PedidoDM112/api/";
+	private String restURL = "http://localhost:9090/PedidoDM112/api";
 	
 	// GAE:
-	//private String restURL = "https://dm112project.appspot.com/api/";
+	//private String restURL = "https://dm112project.appspot.com/api";
+	
+	private final String endpoint = "/orders";
 
 	/**
 	 * createOrder
@@ -25,7 +27,7 @@ public class OrderRestClient {
 	 */
 	public OrderResponse createOrder(Order order) {
 
-		String url = restURL + "order";
+		String url = restURL + endpoint;
 		
 		OrderResponse orderResponse = WebClient.create(url)
 		        .post()
@@ -42,14 +44,13 @@ public class OrderRestClient {
 		return orderResponse;
 	}
 	
-
 	/**
 	 * getItems
 	 * @param cpf
 	 * @return
 	 */
-	public List<Order> getItems(String cpf) {
-		String url = restURL + "orders/" + cpf;
+	public List<Order> getOrdersByCPF(String cpf) {
+		String url = restURL + endpoint + "/" + cpf;
 		
 		return WebClient.create(url)
 		        .get()
@@ -67,7 +68,7 @@ public class OrderRestClient {
 	 * @return
 	 */
 	public Order retrieveOrder(int orderNumber) {
-		String url = restURL + "order/" + orderNumber;
+		String url = restURL + endpoint + "/" + orderNumber;
 		
 		return WebClient.create(url)
 		        .get()
@@ -84,7 +85,7 @@ public class OrderRestClient {
 	 */
 	public OrderResponse updateOrder(Order order) {
 
-		String url = restURL + "order";
+		String url = restURL + endpoint;
 		
 		OrderResponse orderResponse = WebClient.create(url)
 		        .put()

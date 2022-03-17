@@ -22,17 +22,6 @@ public class OrderEntity {
 	public OrderEntity() {
 	}
 
-	public OrderEntity(int number, String cpf, float value, int status, Date orderDate, Date issueDate, Date paymentDate) {
-		super();
-		this.number = number;
-		this.cpf = cpf;
-		this.value = value;
-		this.status = status;
-		this.orderDate = orderDate;
-		this.issueDate = issueDate;
-		this.paymentDate = paymentDate;
-	}
-
 	public int getNumber() {
 		return number;
 	}

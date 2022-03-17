@@ -22,7 +22,7 @@ public class OrderEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer number;
 
-	private String cpf;
+	private String CPF;
 
 	@Column(name = "valor")
 	private float value;
@@ -77,12 +77,12 @@ public class OrderEntity {
 		this.orderDate = orderDate;
 	}
 
-	public String getCpf() {
-		return cpf;
+	public String getCPF() {
+		return CPF;
 	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
+	
+	public void setCPF(String cPF) {
+		CPF = cPF;
 	}
 
 	public Date getIssueDate() {
@@ -103,7 +103,7 @@ public class OrderEntity {
 
 	@Override
 	public String toString() {
-		return "OrderEntity [number=" + number + ", cpf=" + cpf + ", value=" + value + ", status=" + status + ", orderDate="
+		return "OrderEntity [number=" + number + ", CPF=" + CPF + ", value=" + value + ", status=" + status + ", orderDate="
 				+ orderDate + ", issueDate=" + issueDate + ", paymentDate=" + paymentDate + "]";
 	}
 

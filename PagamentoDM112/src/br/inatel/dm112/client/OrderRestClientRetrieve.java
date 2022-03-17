@@ -18,7 +18,7 @@ public class OrderRestClientRetrieve {
 			System.out.println(orderResp);
 		}
 
-		List<Order> orders = client.getItems("111.111.111-11");
+		List<Order> orders = client.getOrdersByCPF("111.111.111-11");
 
 		System.out.println("List of orders retrieved from REST service");
 		for (Order order : orders) {

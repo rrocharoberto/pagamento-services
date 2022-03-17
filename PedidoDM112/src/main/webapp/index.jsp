@@ -9,13 +9,13 @@
 <br/>
 Serviços disponíveis:
 <br/>
-<a href="http://localhost:8080/PedidoDM112/api/orders">Busca todos os pedidos</a>
+<a href="http://localhost:9090/PedidoDM112/api/orders">Busca todos os pedidos</a>
 <br/>
 Outras opções disponíveis:
 <br/>
-http://localhost:8080/PedidoDM112/api/orders/{número}
+http://localhost:9090/PedidoDM112/api/orders/{número}
 <br/>
-http://localhost:8080/PedidoDM112/api/orders/customer/{cpf}
+http://localhost:9090/PedidoDM112/api/orders/customer/{cpf}
 <br/>
 <br/>
 <br/>

@@ -24,8 +24,7 @@ public class PedidoApp implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 
 		OrderEntity order1 = new OrderEntity();
-		order1.setCpf("111.111.111-11");
-		order1.setNumber(123);
+		order1.setCPF("111.111.111-11");
 		order1.setOrderDate(new Date());
 		order1.setStatus(1);
 		order1.setValue(123.45f);
@@ -33,8 +32,7 @@ public class PedidoApp implements CommandLineRunner {
 		repo.save(order1);
 
 		OrderEntity order2 = new OrderEntity();
-		order2.setCpf("111.111.111-11");
-		order2.setNumber(456);
+		order2.setCPF("222.222.222-22");
 		order2.setOrderDate(new Date());
 		order2.setStatus(0);
 		order2.setValue(234.56f);
