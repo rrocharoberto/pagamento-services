@@ -18,14 +18,13 @@ import br.inatel.dm112.model.ResponseStatus;
 @Service
 public class PaymentService {
 
-	//TODO: Fique à vontade para alterar estes atributos
-	//TODO: Para enviar um email através do gmail, é necessário habilitar o SMTP da conta de envio.
-	@Value("${sendToAddress}")
-	private String sendToAddress = "rrocha.roberto@gmail.com";
-	@Value("${sendFromAddress}")
-	private String sendFromAddress = "robertorr9@gmail.com";
-	@Value("${emailPassword}")
-	private String sendPassAddress = "robertodm112";
+	//Para enviar um email através do gmail, é necessário habilitar o SMTP da conta de envio.
+	@Value("${email.sendToAddress}")
+	private String sendToAddress;
+	@Value("${email.sendFromAddress}")
+	private String sendFromAddress;
+	@Value("${email.password}")
+	private String sendPassAddress;
 
 	private OrderRestClient clientOrder = new OrderRestClient();
 	private BilletClient clientBillet = new BilletClient();
@@ -65,26 +64,27 @@ public class PaymentService {
 		order.setStatus(Order.STATUS.PENDING.ordinal()); //pendente de pagamento
 		OrderResponse respOrder = clientOrder.updateOrder(order); //(2) atualiza o status do pedido
 
-		if(respOrder.getStatus() == ResponseStatus.OK.ordinal()) { //OK
-			BilletGenResponse respBillet = clientBillet.callGenerateBilletService(orderNumber, cpf); //(3) gera o boleto
-		
-			if(respBillet.getStatus() == ResponseStatus.OK.ordinal()) {//OK
-				byte [] PDFContent = respBillet.getPdfContent();
-				MailStatusResponse respEmail = clientEmail.callSendMailService( //(4) envia email com o pdf
-						sendFromAddress, sendPassAddress, sendToAddress , PDFContent);
-			
-				if(respEmail.getStatus() == ResponseStatus.OK.ordinal()) {//OK
-					return new PaymentStatus(ResponseStatus.OK.ordinal(), cpf, orderNumber); //(5) retorna sucesso
-				} else {
-					System.out.println("Erro no serviço de email");
-				}
-			} else {
-				System.out.println("Erro no serviço de boleto");
-			}
-		} else {
+		if(respOrder.getStatus() != ResponseStatus.OK.ordinal()) {
 			System.out.println("Erro no serviço de pedido: update");
+			return PaymentStatus.createErrorStatus(cpf, orderNumber);
 		}
-		return PaymentStatus.createErrorStatus(cpf, orderNumber);
+		
+		BilletGenResponse respBillet = clientBillet.callGenerateBilletService(orderNumber, cpf); //(3) gera o boleto
+	
+		if(respBillet.getStatus() != ResponseStatus.OK.ordinal()) {
+			System.out.println("Erro no serviço de boleto");
+			return PaymentStatus.createErrorStatus(cpf, orderNumber);
+		}
+		
+		byte [] PDFContent = respBillet.getPdfContent();
+		MailStatusResponse respEmail = clientEmail.callSendMailService( //(4) envia email com o pdf
+				sendFromAddress, sendPassAddress, sendToAddress, PDFContent);
+	
+		if(respEmail.getStatus() != ResponseStatus.OK.ordinal()) {
+			System.out.println("Erro no serviço de email");
+			return PaymentStatus.createErrorStatus(cpf, orderNumber);
+		}
+		return new PaymentStatus(ResponseStatus.OK.ordinal(), cpf, orderNumber); //(5) retorna sucesso
 	}
 
 	/**
@@ -106,19 +106,18 @@ public class PaymentService {
 		
 		Order order = clientOrder.retrieveOrder(orderNumber); //(1) consulta o pedido pelo número
 
-		if(order != null) { //alguma hora vai ser preciso verificar o status do pedido aqui
-			order.setPaymentDate(new Date());
-			order.setStatus(Order.STATUS.CONFIRMED.ordinal()); //(2) confirma o pagamento
-			OrderResponse respOrder = clientOrder.updateOrder(order); //(3) atualiza o status do pedido
-
-			if(respOrder.getStatus() == ResponseStatus.OK.ordinal()) { //OK
-				return new PaymentStatus(ResponseStatus.OK.ordinal(), cpf, orderNumber); //(4) responde Ok
-			} else {
-				System.out.println("Erro no serviço de pedido ao fazer update.");
-			}
-		} else {
+		if(order == null) { //alguma hora vai ser preciso verificar o status do pedido aqui
 			System.out.println("Erro no serviço de pedido: order is null.");
+			return new PaymentStatus(ResponseStatus.ERROR.ordinal(), cpf, orderNumber);
 		}
-		return new PaymentStatus(ResponseStatus.ERROR.ordinal(), cpf, orderNumber);
+		order.setPaymentDate(new Date());
+		order.setStatus(Order.STATUS.CONFIRMED.ordinal()); //(2) confirma o pagamento
+		OrderResponse respOrder = clientOrder.updateOrder(order); //(3) atualiza o status do pedido
+
+		if(respOrder.getStatus() != ResponseStatus.OK.ordinal()) {
+			System.out.println("Erro no serviço de pedido ao fazer update.");
+			return new PaymentStatus(ResponseStatus.ERROR.ordinal(), cpf, orderNumber);
+		}
+		return new PaymentStatus(ResponseStatus.OK.ordinal(), cpf, orderNumber); //(4) responde Ok
 	}
 }

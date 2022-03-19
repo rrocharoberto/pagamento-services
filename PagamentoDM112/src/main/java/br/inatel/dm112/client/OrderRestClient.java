@@ -2,28 +2,28 @@ package br.inatel.dm112.client;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import br.inatel.dm112.model.Order;
 import br.inatel.dm112.model.OrderResponse;
 import reactor.core.publisher.Mono;
 
+@Service
 public class OrderRestClient {
 
-	// local
-	private String restURL = "http://localhost:9090/PedidoDM112/api";
-	
-	// GAE:
-	//private String restURL = "https://dm112project.appspot.com/api";
+	@Value("${order.rest.url}")
+	private String restURL;
 	
 	private final String endpoint = "/orders";
 
 	/**
 	 * createOrder
 	 * @param order
-	 * @return
+	 * @return 
 	 */
 	public OrderResponse createOrder(Order order) {
 
@@ -47,7 +47,7 @@ public class OrderRestClient {
 	/**
 	 * getItems
 	 * @param cpf
-	 * @return
+	 * @return List of orders
 	 */
 	public List<Order> getOrdersByCPF(String cpf) {
 		String url = restURL + endpoint + "/" + cpf;
