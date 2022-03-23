@@ -7,7 +7,7 @@ import org.springframework.context.annotation.FilterType;
 
 @SpringBootApplication
 @ComponentScan(excludeFilters = {
-		@ComponentScan.Filter(type = FilterType.REGEX, pattern = "br.inatel.dm112.client.*") })
+		@ComponentScan.Filter(type = FilterType.REGEX, pattern = "br.inatel.client.*") })
 public class PagamentoApp {
 
 	public static void main(String[] args) {

@@ -5,7 +5,6 @@
 	<groupId>br.inatel.dm112</groupId>
 	<artifactId>PedidoDM112</artifactId>
 	<version>1.0</version>
-	<packaging>war</packaging>
 	<name>PedidoDM112</name>
 
 	<parent>
@@ -63,7 +62,6 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>

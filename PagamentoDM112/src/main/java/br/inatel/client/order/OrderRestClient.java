@@ -1,4 +1,4 @@
-package br.inatel.dm112.client;
+package br.inatel.client.order;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package br.inatel.dm112.client;
+package br.inatel.client.billet;
 
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -21,6 +21,7 @@ public class BilletClient implements CommandLineRunner {
 
 	@Value("${utility.rest.url}")
 	private String restURL;
+	private String billetEndpoint = "/billet";
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(BilletClient.class).web(WebApplicationType.NONE).run(args);
@@ -29,8 +30,7 @@ public class BilletClient implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 
-		BilletClient client = new BilletClient();
-		BilletGenResponse result = client.callGenerateBilletService(123, "111.111.111-11");
+		BilletGenResponse result = callGenerateBilletService(123, "111.111.111-11");
 		System.out.println(result.getMessage());
 
 		String fileName = "boleto.pdf";
@@ -49,12 +49,10 @@ public class BilletClient implements CommandLineRunner {
 	
 	public BilletGenResponse callGenerateBilletService(int orderNumber, String cpf) {
 
-		String url = restURL + "/generateBillet/" + orderNumber + "/" + cpf;
+		String url = restURL + billetEndpoint + "/" + orderNumber + "/" + cpf;
 		
-		return WebClient
-				.create(url)
-		        .post()
-		        .contentType(MediaType.APPLICATION_JSON)
+		return WebClient.create(url)
+		        .get()
 		        .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
 		        .accept(MediaType.APPLICATION_JSON)
 		        .retrieve()
