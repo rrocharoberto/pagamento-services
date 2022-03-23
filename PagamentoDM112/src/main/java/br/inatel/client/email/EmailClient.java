@@ -1,4 +1,4 @@
-package br.inatel.dm112.client;
+package br.inatel.client.email;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -30,6 +30,8 @@ public class EmailClient implements CommandLineRunner {
 	private String sendFromAddress;
 	@Value("${email.password}")
 	private String sendPassAddress;
+
+	private String mailEndpoint = "/mail";
 	
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(EmailClient.class).web(WebApplicationType.NONE).run(args);
@@ -49,7 +51,7 @@ public class EmailClient implements CommandLineRunner {
 	
 	public MailStatusResponse callSendMailService(String from, String password, String to, byte[] content) {
 
-		String url = restURL + "/sendMail";
+		String url = restURL + mailEndpoint ;
 		
 		MailRequestData mrd = new MailRequestData(from, password, to, content);
 		

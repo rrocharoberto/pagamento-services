@@ -5,9 +5,9 @@ import java.util.Date;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import br.inatel.dm112.client.BilletClient;
-import br.inatel.dm112.client.EmailClient;
-import br.inatel.dm112.client.OrderRestClient;
+import br.inatel.client.billet.BilletClient;
+import br.inatel.client.email.EmailClient;
+import br.inatel.client.order.OrderRestClient;
 import br.inatel.dm112.model.BilletGenResponse;
 import br.inatel.dm112.model.MailStatusResponse;
 import br.inatel.dm112.model.Order;

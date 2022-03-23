@@ -1,4 +1,4 @@
-package br.inatel.dm112.client;
+package br.inatel.client.payment;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
