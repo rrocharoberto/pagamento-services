@@ -57,16 +57,9 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<goals>
-							<goal>repackage</goal>
-						</goals>
-						<configuration>
-							<mainClass>br.inatel.dm112.PagamentoApp</mainClass>
-						</configuration>
-					</execution>
-				</executions>
+				<configuration>
+					<mainClass>br.inatel.dm112.PagamentoApp</mainClass>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
