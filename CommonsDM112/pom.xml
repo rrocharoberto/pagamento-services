@@ -4,6 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.inatel.dm112</groupId>
 	<artifactId>CommonsDM112</artifactId>
+	<version>1.0</version>
 	<name>CommonsDM112</name>
 
 	<parent>
