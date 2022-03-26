@@ -73,7 +73,30 @@
 		<dependency>
 			<groupId>org.jrimum</groupId>
 			<artifactId>jrimum-bopepo</artifactId>
-			<version>0.2.3-SNAPSHOT</version>
+			<version>0.2.3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../lib/jrimum-bopepo-0.2.3-SNAPSHOT.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.jrimum</groupId>
+			<artifactId>domkee</artifactId>
+			<version>0.2.3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../lib/jrimum-domkee-0.2.3-SNAPSHOT.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.jrimum</groupId>
+			<artifactId>utilix-</artifactId>
+			<version>0.2.3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../lib/jrimum-utilix-0.2.3-SNAPSHOT.jar</systemPath>
+		</dependency>
+		<dependency>
+			<groupId>org.jrimum</groupId>
+			<artifactId>vallia-</artifactId>
+			<version>0.2.3</version>
+			<scope>system</scope>
+			<systemPath>${project.basedir}/../lib/jrimum-vallia-0.2.3-SNAPSHOT.jar</systemPath>
 		</dependency>
 
 		<!-- Email -->
@@ -83,16 +106,4 @@
 			<version>1.4</version>
 		</dependency>
 	</dependencies>
-
-	<repositories>
-
-		<!-- Repositório JRimum -->
-		<repository>
-			<id>jrimum.org</id>
-			<url>http://jrimum.org/maven/content/groups/public/</url>
-			<snapshots>
-				<enabled>true</enabled>
-			</snapshots>
-		</repository>
-	</repositories>
 </project>
