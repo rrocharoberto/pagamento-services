@@ -27,7 +27,7 @@ public class BilletRest implements Billet {
 									@PathVariable("orderNumber") String orderNumber, 
 									@PathVariable("cpf") String cpf) {
 		
-		System.out.println("BilletRest - generateBillet");
+		System.out.println("BilletRest - generateBillet - cpf: " + cpf + " order: " + orderNumber);
 		return service.generateBillet(orderNumber, cpf);
 	}
 }

@@ -8,14 +8,10 @@ import br.inatel.dm112.adapter.model.BilletContent;
 import br.inatel.dm112.adapter.model.CustomerData;
 import br.inatel.dm112.adapter.model.OrderData;
 import br.inatel.dm112.model.BilletGenResponse;
-import br.inatel.dm112.model.ResponseStatus;
+import br.inatel.dm112.rest.support.UtilityException;
 
 @Service
 public class BilletService {
-
-	public static enum STATUS {
-		OK, ERROR
-	};
 
 	public BilletGenResponse generateBillet(String orderNumber, String cpf) {
 		BilletGenResponse result = new BilletGenResponse();
@@ -23,16 +19,13 @@ public class BilletService {
 			byte[] pdfContent = generateBilletPDFContent(orderNumber, cpf);
 
 			// monta a resposta
-			result.setMessage("Sucesso na geração do boleto - cpf: " + cpf + " pedido: " + orderNumber);
+			//result.setMessage("Sucesso na geração do boleto - cpf: " + cpf + " pedido: " + orderNumber);
 			result.setPdfContent(pdfContent);
-			result.setStatus(ResponseStatus.OK.ordinal());
 		} catch (Exception e) {
 			e.printStackTrace();
-			result.setMessage(
-					"Erro gerando o boleto - cpf: " + cpf + " pedido: " + orderNumber + " - " + e.getMessage());
-			result.setStatus(ResponseStatus.ERROR.ordinal());
+			throw new UtilityException("Erro gerando o boleto - cpf: " + cpf + " pedido: " + orderNumber + " - " + e.getMessage());
 		}
-		System.out.println("BilletService - generateBillet - Result: " + result);
+		System.out.println("BilletService - generateBillet");
 		return result;
 	}
 	

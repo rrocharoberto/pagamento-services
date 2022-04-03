@@ -1,4 +1,4 @@
-package br.inatel.client.order;
+package br.inatel.dm112.client;
 
 import java.util.List;
 
@@ -9,11 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import br.inatel.dm112.model.Order;
-import br.inatel.dm112.model.OrderResponse;
 import reactor.core.publisher.Mono;
 
 @Service
-public class OrderRestClient {
+public class OrderClient {
 
 	@Value("${order.rest.url}")
 	private String restURL;
@@ -25,23 +24,21 @@ public class OrderRestClient {
 	 * @param order
 	 * @return 
 	 */
-	public OrderResponse createOrder(Order order) {
+	public void createOrder(Order order) {
 
 		String url = restURL + endpoint;
+		System.out.println("URL: " + url);
 		
-		OrderResponse orderResponse = WebClient.create(url)
+		WebClient.create(url)
 		        .post()
 		        .contentType(MediaType.APPLICATION_JSON)
 		        .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
 		        .body(Mono.just(order), Order.class)
 		        .accept(MediaType.APPLICATION_JSON)
-		        .retrieve()
-		        .bodyToFlux(OrderResponse.class)
-		        .log().blockFirst();
+		        .retrieve();
+		        //.log()
 
-		System.out.println("Resultado do createOrder: " + orderResponse);
-
-		return orderResponse;
+		System.out.println("Sucesso no createOrder para o pedido: " + order.getNumber());
 	}
 	
 	/**
@@ -50,7 +47,8 @@ public class OrderRestClient {
 	 * @return List of orders
 	 */
 	public List<Order> getOrdersByCPF(String cpf) {
-		String url = restURL + endpoint + "/" + cpf;
+		String url = restURL + endpoint + "/customer/" + cpf;
+		System.out.println("URL: " + url);
 		
 		return WebClient.create(url)
 		        .get()
@@ -69,13 +67,13 @@ public class OrderRestClient {
 	 */
 	public Order retrieveOrder(int orderNumber) {
 		String url = restURL + endpoint + "/" + orderNumber;
+		System.out.println("URL: " + url);
 		
 		return WebClient.create(url)
 		        .get()
 		        .retrieve()
-		        .bodyToFlux(Order.class)
-		        .log()
-		        .blockFirst();
+		        .bodyToMono(Order.class)
+		        .block();
 	}
 	
 	/**
@@ -83,22 +81,27 @@ public class OrderRestClient {
 	 * @param order
 	 * @return
 	 */
-	public OrderResponse updateOrder(Order order) {
+	public void updateOrder(Order order) {
 
-		String url = restURL + endpoint;
+		String url = restURL + endpoint + "/" + order.getNumber();
+		System.out.println("URL: " + url);
 		
-		OrderResponse orderResponse = WebClient.create(url)
+		WebClient.create(url)
 		        .put()
 		        .contentType(MediaType.APPLICATION_JSON)
 		        .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
 		        .body(Mono.just(order), Order.class)
 		        .accept(MediaType.APPLICATION_JSON)
-		        .retrieve()
-		        .bodyToFlux(OrderResponse.class)
-		        .log().blockFirst();
+		        .retrieve();
 
-		System.out.println("Resultado do updateOrder: " + orderResponse);
-
-		return orderResponse;
+		System.out.println("Sucesso no updateOrder para o pedido: " + order.getNumber());
+	}
+	
+	public String getEndpoint() {
+		return endpoint;
+	}
+	
+	public void setRestURL(String restURL) {
+		this.restURL = restURL;
 	}
 }

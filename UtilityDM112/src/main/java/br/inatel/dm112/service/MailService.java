@@ -4,18 +4,17 @@ import org.springframework.stereotype.Service;
 
 import br.inatel.dm112.adapter.MailAdapter;
 import br.inatel.dm112.model.MailRequestData;
-import br.inatel.dm112.model.MailStatusResponse;
+import br.inatel.dm112.rest.support.UtilityException;
 
 @Service
 public class MailService {
 
-	public MailStatusResponse sendMail(MailRequestData mailData) {
+	public void sendMail(MailRequestData mailData) {
 		if (mailData.getFrom() == null || 
 				mailData.getPassword() == null || 
 				mailData.getTo() == null || 
 				mailData.getContent() == null) {
-			return new MailStatusResponse(MailStatusResponse.STATUS.ERROR.ordinal(), 
-					mailData.getFrom(), mailData.getTo(), "Null values not allowed in MailRequestData.");
+			throw new UtilityException("Null values not allowed in MailRequestData.");
 		}
 
 		MailAdapter sender = new MailAdapter();
@@ -23,11 +22,8 @@ public class MailService {
 			sender.sendMail(mailData.getFrom(), mailData.getPassword(), mailData.getTo(), mailData.getContent());
 		} catch(Exception e) {
 			e.printStackTrace();
-			return new MailStatusResponse(MailStatusResponse.STATUS.ERROR.ordinal(), 
-					mailData.getFrom(), mailData.getTo(), e.getMessage());
+			throw new UtilityException("Error sending email: " + e.getMessage());
 		}
-		return new MailStatusResponse(MailStatusResponse.STATUS.OK.ordinal(), 
-				mailData.getFrom(), mailData.getTo(), "Email sent success.");
+		System.out.println("Email sent success.");
 	}
-
 }

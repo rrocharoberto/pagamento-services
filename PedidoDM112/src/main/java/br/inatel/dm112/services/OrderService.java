@@ -38,12 +38,12 @@ public class OrderService {
 		System.out.println("OrderImpl updateOrder - atualizou o pedido com número: " + order.getNumber());
 	}
 
-	public void createOrder(Order order) {
+	public OrderEntity createOrder(Order order) {
 
 		OrderEntity entity = convertToEntity(order);
-
-		System.out.println("OrderImpl createOrder - pedido criado com número: " + entity.getNumber());
 		repo.save(entity);
+		System.out.println("OrderImpl createOrder - pedido criado com número: " + entity.getNumber());
+		return entity;
 	}
 
 	public List<Order> getAllOrders() {

@@ -10,8 +10,8 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.2.6.RELEASE</version>
-		<relativePath />
+		<version>2.6.6</version>
+		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
 	<properties>
@@ -21,13 +21,6 @@
 	</properties>
 
 	<dependencies>
-		<dependency>
-			<groupId>br.inatel.dm112</groupId>
-			<artifactId>CommonsDM112</artifactId>
-			<version>1.0</version>
-			<type>jar</type>
-		</dependency>
-
 		<!-- Add Spring support -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -47,30 +40,7 @@
 		<dependency>
 			<groupId>org.jrimum</groupId>
 			<artifactId>jrimum-bopepo</artifactId>
-			<version>0.2.3</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/../lib/jrimum-bopepo-0.2.3-SNAPSHOT.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>org.jrimum</groupId>
-			<artifactId>domkee</artifactId>
-			<version>0.2.3</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/../lib/jrimum-domkee-0.2.3-SNAPSHOT.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>org.jrimum</groupId>
-			<artifactId>utilix-</artifactId>
-			<version>0.2.3</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/../lib/jrimum-utilix-0.2.3-SNAPSHOT.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>org.jrimum</groupId>
-			<artifactId>vallia-</artifactId>
-			<version>0.2.3</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/../lib/jrimum-vallia-0.2.3-SNAPSHOT.jar</systemPath>
+			<version>0.2.3-SNAPSHOT</version>
 		</dependency>
 
 		<!-- Email -->
@@ -78,6 +48,12 @@
 			<groupId>com.sun.mail</groupId>
 			<artifactId>javax.mail</artifactId>
 			<version>1.6.2</version>
+		</dependency>
+		<!-- jsp -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>9.0.19</version>
 		</dependency>
 	</dependencies>
 

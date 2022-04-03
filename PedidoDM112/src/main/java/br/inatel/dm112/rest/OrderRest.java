@@ -3,21 +3,20 @@ package br.inatel.dm112.rest;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.websocket.server.PathParam;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.inatel.dm112.interfaces.OrderInterface;
 import br.inatel.dm112.model.Order;
-import br.inatel.dm112.model.OrderResponse;
-import br.inatel.dm112.model.ResponseStatus;
 import br.inatel.dm112.services.OrderService;
 
 @RestController
@@ -29,9 +28,10 @@ public class OrderRest implements OrderInterface {
 
 	@Override
 	@GetMapping("/orders/{orderNumber}")
+	@ResponseBody
 	public Order getOrder(@PathVariable("orderNumber") Integer orderNumber) {
 
-		System.out.println("OrderRest - getOrder");
+		System.out.println("OrderRest - getOrder: " + orderNumber);
 		return OrderService.convertToOrder(service.getOrder(orderNumber));
 	}
 
@@ -45,11 +45,19 @@ public class OrderRest implements OrderInterface {
 
 	@Override
 	@PutMapping("/orders/{orderNumber}")
-	public OrderResponse updateOrder(@RequestBody Order order, @PathParam("orderNumber") Integer orderNumber) {
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void updateOrder(@RequestBody Order order, @PathVariable("orderNumber") Integer orderNumber) {
 
-		System.out.println("OrderRest - updateOrder");
+		System.out.println("OrderRest - updateOrder " + orderNumber);
 		service.updateOrder(order, orderNumber);
-		return new OrderResponse(order.getNumber(), ResponseStatus.OK.ordinal());
+	}
+
+	@PostMapping("/orders")
+	@ResponseStatus(HttpStatus.NO_CONTENT)
+	public void saveNewOrder(@RequestBody Order newOrder) {
+
+		System.out.println("OrderRest - saveNewOrder");
+		service.createOrder(newOrder);
 	}
 
 	// usado para teste
@@ -60,13 +68,4 @@ public class OrderRest implements OrderInterface {
 		System.out.println("OrderRest - getAllOrders");
 		return service.getAllOrders();
 	}
-
-	@PostMapping("/orders")
-	public OrderResponse saveNewOrder(@RequestBody Order newOrder) {
-
-		System.out.println("OrderRest - saveNewOrder");
-		service.createOrder(newOrder);
-		return new OrderResponse(newOrder.getNumber(), ResponseStatus.OK.ordinal());
-	}
-
 }
