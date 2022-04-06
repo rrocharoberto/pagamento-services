@@ -11,17 +11,14 @@
 
 	<properties>
 		<!-- editar de acordo com o projeto criado no Google Cloud -->
-		<app.id>dm112exemplo1</app.id>
+		<app.id>exemplodm112-gae</app.id>
 		<app.version>1</app.version>
 
 		<appengine.maven.plugin.version>2.2.0</appengine.maven.plugin.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<maven.compiler.showDeprecation>true</maven.compiler.showDeprecation>
-
-		<spring.version>5.2.4.RELEASE</spring.version>
 	</properties>
 
 	<dependencyManagement>
@@ -37,20 +34,6 @@
 	</dependencyManagement>
 
 	<dependencies>
-		<!-- Add Spring MVC and REST support -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-
-		<!-- Add Jackson for JSON/XML converters -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.10.2</version>
-		</dependency>
-
 		<!-- Compile/runtime dependencies -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

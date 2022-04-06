@@ -1,4 +1,4 @@
-appengine-skeleton
+ExemploDM112_GAE
 =============================
 
-This is a generated application from the appengine-skeleton archetype.
+This is an example project application to deploy in Google App Engine.

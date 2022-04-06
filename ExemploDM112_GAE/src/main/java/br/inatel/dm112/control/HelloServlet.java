@@ -18,17 +18,17 @@ public class HelloServlet extends HttpServlet {
 
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doGet Served at: " + request.getContextPath());
+		System.out.println("doGet Served by App Engine" + request.getContextPath());
 		
 		response.getWriter()
-			.append("Olá de doGet. Hora do servidor: " + new java.util.Date());
+			.append("Olá de doGet. Hora do servidor App Engine: " + new java.util.Date());
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("doPost Served at: " + request.getContextPath());
+		System.out.println("doPost Served by App Engine" + request.getContextPath());
 		
 		response.getWriter()
-			.append("Olá de doPost. Hora do servidor: " + new java.util.Date());
+			.append("Olá de doPost. Hora do servidor App Engine: " + new java.util.Date());
 	}
 
 }
