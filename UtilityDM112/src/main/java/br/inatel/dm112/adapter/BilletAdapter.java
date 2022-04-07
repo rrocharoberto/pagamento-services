@@ -21,7 +21,7 @@ public class BilletAdapter {
 		//Agora está lendo um pdf fixo simulado.
 		byte[] bytes = readPDFFile();
 		if (bytes != null) {
-			System.out.println("Sucesso na chamada para envio do email.");
+			System.out.println("Sucesso na geração do boleto.");
 		}
 
 		return bytes;
