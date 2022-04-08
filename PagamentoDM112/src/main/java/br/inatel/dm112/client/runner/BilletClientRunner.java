@@ -13,7 +13,7 @@ public class BilletClientRunner {
 
 	public static void main(String[] args) {
 		BilletClient client = new BilletClient();
-		client.setRestURL(ClientUtil.getUtilityRestURL());
+		client.setRestURL(ClientUtil.getUtilityRestBilletURL());
 
 		String fileName = "boleto.pdf";
 		int orderNumber = 1;

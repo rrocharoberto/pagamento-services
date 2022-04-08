@@ -9,7 +9,7 @@ public class EmailClientRunner {
 
 	public static void main(String[] args) {
 		EmailClient client = new EmailClient();
-		client.setRestURL(ClientUtil.getUtilityRestURL());
+		client.setRestURL(ClientUtil.getUtilityRestEmailURL());
 		client.setSendFromAddress(ClientUtil.getEmailFromAddress());
 		client.setSendToAddress(ClientUtil.getEmailSendToAddress());
 		client.setSendPassAddress(ClientUtil.getEmailPassword());

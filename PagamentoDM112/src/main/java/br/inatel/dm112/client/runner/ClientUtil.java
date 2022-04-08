@@ -6,12 +6,16 @@ import java.util.Properties;
 
 public class ClientUtil {
 
-	public static String getOrderRestURL() {
-		return getPropertyValue("order.rest.url");
+	public static String getUtilityRestBilletURL() {
+		return getPropertyValue("utility.rest.billet.url");
 	}
 
-	public static String getUtilityRestURL() {
-		return getPropertyValue("utility.rest.url");
+	public static String getUtilityRestEmailURL() {
+		return getPropertyValue("utility.rest.email.url");
+	}
+
+	public static String getOrderRestURL() {
+		return getPropertyValue("order.rest.url");
 	}
 
 	public static String getEmailSendToAddress() {
