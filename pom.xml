@@ -20,7 +20,10 @@
         <module>PagamentoDM112</module>
         <module>PedidoDM112</module>
         <module>UtilityDM112</module>
+
         <module>ExemploServletDM112</module>
+        <module>ExemploDM112_GAE</module>
+        <module>ExemploDM112_OS</module>
     </modules>
 
     <build>

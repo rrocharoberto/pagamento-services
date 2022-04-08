@@ -29,6 +29,5 @@
 			<attribute name="org.eclipse.jst.component.nondependency" value=""/>
 		</attributes>
 	</classpathentry>
-	<classpathentry combineaccessrules="false" kind="src" path="/CommonsDM112"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

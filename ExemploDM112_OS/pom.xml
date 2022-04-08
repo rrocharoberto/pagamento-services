@@ -7,103 +7,57 @@
 	<packaging>war</packaging>
 	<name>ExemploDM112_OS</name>
 
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.6.6</version>
+		<relativePath /> <!-- lookup parent from repository -->
+	</parent>
+
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
-
-		<spring.version>5.2.5.RELEASE</spring.version>
-		<hibernate.version>5.4.10.Final</hibernate.version>
 	</properties>
 
+	<dependencies>
+		<!-- Add Spring support -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-webflux</artifactId>
+		</dependency>
+
+		<!-- jsp -->
+		<dependency>
+			<groupId>org.apache.tomcat</groupId>
+			<artifactId>tomcat-jasper</artifactId>
+			<version>9.0.19</version>
+		</dependency>
+	</dependencies>
+
 	<build>
-		<finalName>ExemploDM112_OS</finalName>
-		<sourceDirectory>src</sourceDirectory>
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.1</version>
 				<configuration>
 					<source>1.8</source>
 					<target>1.8</target>
 				</configuration>
 			</plugin>
 			<plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>3.3.1</version>
-				<configuration>
-					<warSourceDirectory>WebContent</warSourceDirectory>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
 		</plugins>
 	</build>
-
-	<dependencies>
-		<!-- Add Spring MVC and REST support -->
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-
-		<!-- Add Jackson for JSON/XML converters -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.10.2</version>
-		</dependency>
-
-		<!-- Add Servlet support for Spring's AbstractAnnotationConfigDispatcherServletInitializer -->
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>javax.servlet-api</artifactId>
-			<version>3.1.0</version>
-			<scope>provided</scope>
-		</dependency>
-
-		<!-- Add support for JSP ... get rid of Eclipse error -->
-		<dependency>
-			<groupId>javax.servlet.jsp</groupId>
-			<artifactId>javax.servlet.jsp-api</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-
-		<!-- Bopepo -->
-		<dependency>
-			<groupId>org.jrimum</groupId>
-			<artifactId>jrimum-bopepo</artifactId>
-			<version>0.2.3</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/../lib/jrimum-bopepo-0.2.3-SNAPSHOT.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>org.jrimum</groupId>
-			<artifactId>domkee</artifactId>
-			<version>0.2.3</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/../lib/jrimum-domkee-0.2.3-SNAPSHOT.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>org.jrimum</groupId>
-			<artifactId>utilix-</artifactId>
-			<version>0.2.3</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/../lib/jrimum-utilix-0.2.3-SNAPSHOT.jar</systemPath>
-		</dependency>
-		<dependency>
-			<groupId>org.jrimum</groupId>
-			<artifactId>vallia-</artifactId>
-			<version>0.2.3</version>
-			<scope>system</scope>
-			<systemPath>${project.basedir}/../lib/jrimum-vallia-0.2.3-SNAPSHOT.jar</systemPath>
-		</dependency>
-
-		<!-- Email -->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4</version>
-		</dependency>
-	</dependencies>
 </project>

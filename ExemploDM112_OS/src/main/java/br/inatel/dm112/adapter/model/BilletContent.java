@@ -194,7 +194,7 @@ public class BilletContent {
 	}
 
 	public void setDigitoAgencia(String digitoAgencia) {
-		System.out.println("DigitoAgencia: " + DigitoAgencia);
+		//System.out.println("DigitoAgencia: " + DigitoAgencia);
 		DigitoAgencia = digitoAgencia;
 	}
 
