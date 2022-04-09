@@ -68,8 +68,7 @@
 				<executions>
 					<execution>
 						<goals>
-							<!-- create a new jar file repackaged to create a self-contained, 
-								executable application -->
+							<!-- create a new jar file repackaged to create a self-contained, executable application -->
 							<goal>repackage</goal>
 						</goals>
 					</execution>
