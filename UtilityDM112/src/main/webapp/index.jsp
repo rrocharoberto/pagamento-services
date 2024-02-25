@@ -25,11 +25,11 @@ O corpo do request deve possuir um JSON:
 <br/>
 {
 <br/>
-	"from": "robertorr9@gmail.com",
+	"from": "from_addr@email.com",
 <br/>
 	"password": "email_password",
 <br/>
-	"to": "email_to_send",
+	"to": "your_email@email.com",
 <br/>
 	"content": "conteúdo do pdf"
 <br/>
