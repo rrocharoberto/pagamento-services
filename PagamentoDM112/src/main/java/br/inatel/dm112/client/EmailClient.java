@@ -26,12 +26,12 @@ public class EmailClient {
 
 	private String mailEndpoint = "/mail";
 	
-	public void callSendMailService(byte[] content) {
+	public void callSendMailService(int orderNumber, byte[] content) {
 
 		String url = restURL + mailEndpoint ;
 		System.out.println("URL: " + url);
 		
-		MailRequestData mrd = new MailRequestData(sendFromAddress, sendPassAddress, sendToAddress, content);
+		MailRequestData mrd = new MailRequestData(orderNumber, sendFromAddress, sendPassAddress, sendToAddress, content);
 		
 		WebClient
 				.create(url)

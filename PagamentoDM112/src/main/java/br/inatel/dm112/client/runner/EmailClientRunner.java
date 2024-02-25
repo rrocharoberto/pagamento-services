@@ -14,9 +14,10 @@ public class EmailClientRunner {
 		client.setSendToAddress(ClientUtil.getEmailSendToAddress());
 		client.setSendPassAddress(ClientUtil.getEmailPassword());
 
+		int orderNumber = 5555; //any test order number
 		byte[] bytes = readPDFFile();
 		if (bytes != null) {
-			client.callSendMailService(bytes);
+			client.callSendMailService(orderNumber, bytes);
 			System.out.println("Sucesso na chamada para envio do email.");
 		}
 	}

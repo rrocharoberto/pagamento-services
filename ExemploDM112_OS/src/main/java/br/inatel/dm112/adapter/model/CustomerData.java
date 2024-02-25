@@ -14,7 +14,7 @@ public class CustomerData {
 	private String CPRFSacado;
 	private String NomeSacado;
 
-	private String email = "rrocha.roberto@gmail.com";
+	private String email = "your_email@email.com";
 
 	public CustomerData(String cpf) {
 		this.setUF("MG");

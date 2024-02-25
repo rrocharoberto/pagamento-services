@@ -2,6 +2,7 @@ package br.inatel.dm112.model;
 
 public class MailRequestData {
 
+	private int orderNumber;
 	private String from;
 	private String password;
 	private String to;
@@ -10,14 +11,22 @@ public class MailRequestData {
 	public MailRequestData() {
 	}
 
-	public MailRequestData(String from, String password, String to, byte[] content) {
-		super();
+	public MailRequestData(int orderNumber, String from, String password, String to, byte[] content) {
+		this.orderNumber = orderNumber;
 		this.from = from;
 		this.password = password;
 		this.to = to;
 		this.content = content;
 	}
 
+	public int getOrderNumber() {
+		return orderNumber;
+	}
+	
+	public void setOrderNumber(int orderNumber) {
+		this.orderNumber = orderNumber;
+	}
+	
 	public String getFrom() {
 		return from;
 	}

@@ -16,37 +16,39 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
+import br.inatel.dm112.model.MailRequestData;
+
 public abstract class MailAdapter {
 
-	public void sendMail(final String from, final String password, String to, byte[] content) {
+	public void sendMail(MailRequestData mailData) {
 
-		System.out.println("Enviando email para: " + to);
+		System.out.println("Enviando email do pedido " + mailData.getOrderNumber() + " para: " + mailData.getTo());
 
 		Properties props = getEmailHostProperties();
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(from, password);
+				return new PasswordAuthentication(mailData.getFrom(), mailData.getPassword());
 			}
 		});
 
 		try {
 			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(from));
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-			message.setSubject("Boleto");
+			message.setFrom(new InternetAddress(mailData.getFrom()));
+			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(mailData.getTo()));
+			message.setSubject("Boleto do pedido " + mailData.getOrderNumber());
 
 			Multipart multipart = new MimeMultipart();
 			BodyPart messageBodyPartText = new MimeBodyPart(); // texto
-			messageBodyPartText.setText("Boleto gerado pelo sistema de Vendas DM112");
+			messageBodyPartText.setText("Boleto do pedido " + mailData.getOrderNumber() + " gerado pelo E-comerce DM112.");
 			multipart.addBodyPart(messageBodyPartText);
 
 			BodyPart messageBodyPartAtt = new MimeBodyPart(); // anexo
-			ByteArrayDataSource source = new ByteArrayDataSource(content, "application/pdf");
-			source.setName("Boleto.pdf");
+			ByteArrayDataSource source = new ByteArrayDataSource(mailData.getContent(), "application/pdf");
+			source.setName("Boleto" + mailData.getOrderNumber() + ".pdf");
 
 			messageBodyPartAtt.setDataHandler(new DataHandler(source));
-			messageBodyPartAtt.setFileName("Boleto_Venda.pdf");
+			messageBodyPartAtt.setFileName("Boleto_Venda" + mailData.getOrderNumber() + ".pdf");
 			multipart.addBodyPart(messageBodyPartAtt);
 
 			message.setContent(multipart);

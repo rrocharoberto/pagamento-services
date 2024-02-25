@@ -74,7 +74,7 @@ public class PaymentService {
 		
 		byte [] PDFContent = respBillet.getPdfContent();
 		try {
-			clientEmail.callSendMailService(PDFContent); //(4) envia email com o pdf
+			clientEmail.callSendMailService(orderNumber, PDFContent); //(4) envia email com o pdf
 		} catch(Exception e ) {
 			System.out.println("Erro no serviço de email");
 			return PaymentStatus.createErrorStatus(cpf, orderNumber, PAY_STATUS.EMAIL_ERROR);

@@ -22,7 +22,7 @@ public class MailService {
 		}
 
 		try {
-			sender.sendMail(mailData.getFrom(), mailData.getPassword(), mailData.getTo(), mailData.getContent());
+			sender.sendMail(mailData);
 		} catch(Exception e) {
 			e.printStackTrace();
 			throw new UtilityException("Error sending email: " + e.getMessage());
