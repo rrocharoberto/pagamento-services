@@ -8,11 +8,18 @@
 <h1>File index.jsp ok!</h1>
 <br/>
 <h2>Serviços disponíveis:</h2>
+
+<h3>Geração de Boletos</h3>
 <br/>
 GET: <a href="http://localhost:7070/UtilityDM112/api/billet/{order}/{cpf}">Geração de boletos</a>
 <br/>
 <br/>
-POST: <a href="http://localhost:7070/UtilityDM112/api/mail/">Envio de email</a>
+<h3>Envio de email</h3>
+<br/>
+POST:
+<br/>
+URL: http://localhost:7070/UtilityDM112/api/mail
+<br/>
 <br/>
 O corpo do request deve possuir um JSON:
 <br/>
