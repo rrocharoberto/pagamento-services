@@ -1,5 +1,6 @@
 package br.inatel.dm112.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import br.inatel.dm112.adapter.MailAdapter;
@@ -8,6 +9,9 @@ import br.inatel.dm112.rest.support.UtilityException;
 
 @Service
 public class MailService {
+	
+	@Autowired
+	MailAdapter sender;
 
 	public void sendMail(MailRequestData mailData) {
 		if (mailData.getFrom() == null || 
@@ -17,7 +21,6 @@ public class MailService {
 			throw new UtilityException("Null values not allowed in MailRequestData.");
 		}
 
-		MailAdapter sender = new MailAdapter();
 		try {
 			sender.sendMail(mailData.getFrom(), mailData.getPassword(), mailData.getTo(), mailData.getContent());
 		} catch(Exception e) {

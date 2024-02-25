@@ -16,17 +16,13 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
-public class MailAdapter {
+public abstract class MailAdapter {
 
 	public void sendMail(final String from, final String password, String to, byte[] content) {
 
 		System.out.println("Enviando email para: " + to);
 
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", "smtp.gmail.com");
-		props.put("mail.smtp.port", "587");
+		Properties props = getEmailHostProperties();
 
 		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -42,7 +38,7 @@ public class MailAdapter {
 
 			Multipart multipart = new MimeMultipart();
 			BodyPart messageBodyPartText = new MimeBodyPart(); // texto
-			messageBodyPartText.setText("Boleto gerado pelo sistema de Vendas");
+			messageBodyPartText.setText("Boleto gerado pelo sistema de Vendas DM112");
 			multipart.addBodyPart(messageBodyPartText);
 
 			BodyPart messageBodyPartAtt = new MimeBodyPart(); // anexo
@@ -56,10 +52,12 @@ public class MailAdapter {
 			message.setContent(multipart);
 
 			Transport.send(message);
-			System.out.println("Sent message successfully....");
+			System.out.println("Email sent successfully....");
 		} catch (MessagingException e) {
 			e.printStackTrace();
 			throw new RuntimeException(e);
 		}
 	}
+
+	protected abstract Properties getEmailHostProperties();
 }
