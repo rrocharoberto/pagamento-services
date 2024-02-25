@@ -1,0 +1,15 @@
+#ignore generated eclipse configuration files
+
+/.metadata
+
+*/target
+*/bin
+
+*/.settings
+*/.project
+*/.classpath
+*/.tern-project
+
+#Application temp files
+*/boleto.pdf
+
