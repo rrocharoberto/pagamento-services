@@ -1,6 +1,7 @@
 package br.inatel.dm112.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -36,6 +37,22 @@ public class OrderService {
 		updateOrderData(order, entity); // don't change PK
 		repo.save(entity);
 		System.out.println("OrderImpl updateOrder - atualizou o pedido com número: " + order.getNumber());
+	}
+	
+	public void startPayment(int orderNumber) {
+		OrderEntity entity = getOrder(orderNumber);
+		entity.setIssueDate(new Date());
+		entity.setStatus(Order.STATUS.PENDING.ordinal());
+		repo.save(entity);
+		System.out.println("OrderImpl confirmPayment - confirmou o pagamento do pedido com número: " + orderNumber);
+	}
+
+	public void confirmPayment(int orderNumber) {
+		OrderEntity entity = getOrder(orderNumber);
+		entity.setPaymentDate(new Date());
+		entity.setStatus(Order.STATUS.CONFIRMED.ordinal());
+		repo.save(entity);
+		System.out.println("OrderImpl confirmPayment - confirmou o pagamento do pedido com número: " + orderNumber);
 	}
 
 	public OrderEntity createOrder(Order order) {
