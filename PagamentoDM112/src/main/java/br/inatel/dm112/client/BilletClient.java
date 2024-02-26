@@ -10,7 +10,7 @@ import br.inatel.dm112.model.BilletGenResponse;
 
 @Service
 public class BilletClient {
-	@Value("${utility.rest.url}")
+	@Value("${utility.rest.billet.url}")
 	private String restURL;
 	
 	private String billetEndpoint = "/billet";

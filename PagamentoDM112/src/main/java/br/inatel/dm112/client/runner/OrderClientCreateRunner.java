@@ -11,7 +11,7 @@ public class OrderClientCreateRunner {
 		OrderClient client = new OrderClient();
 		client.setRestURL(ClientUtil.getOrderRestURL());
 
-		String cpf = "111.111.111-11";
+		String cpf = "222.222.222-22";
 		
 		Order order = new Order();
 		order.setCpf(cpf);

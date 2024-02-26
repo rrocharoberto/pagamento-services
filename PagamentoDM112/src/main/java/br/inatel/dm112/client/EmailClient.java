@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 @Service
 public class EmailClient {
 
-	@Value("${utility.rest.url}")
+	@Value("${utility.rest.email.url}")
 	private String restURL;
 
 	@Value("${email.sendFromAddress}")
