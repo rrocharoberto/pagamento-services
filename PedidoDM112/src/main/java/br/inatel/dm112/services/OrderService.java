@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import br.inatel.dm112.model.Order;
 import br.inatel.dm112.model.dao.OrderRepository;
 import br.inatel.dm112.model.entities.OrderEntity;
+import br.inatel.dm112.rest.support.InvalidOrderOperationException;
 import br.inatel.dm112.rest.support.OrderNotFoundException;
 
 @Service
@@ -41,6 +42,9 @@ public class OrderService {
 	
 	public void startPayment(int orderNumber) {
 		OrderEntity entity = getOrder(orderNumber);
+		if(entity.getStatus() != Order.STATUS.PENDING.ordinal()) {
+			throw new InvalidOrderOperationException("Order is not PENDING. Status: " + entity.getStatus());
+		}
 		entity.setIssueDate(new Date());
 		entity.setStatus(Order.STATUS.PENDING.ordinal());
 		repo.save(entity);

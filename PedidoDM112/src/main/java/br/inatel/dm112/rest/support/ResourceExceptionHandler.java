@@ -35,6 +35,19 @@ public class ResourceExceptionHandler {
 		return error;
 	}
 
+
+	@ExceptionHandler(InvalidOrderOperationException.class)
+	@ResponseBody
+	@ResponseStatus(HttpStatus.BAD_REQUEST)
+	public OrderStandardError handlerException(InvalidOrderOperationException ex) {
+
+		OrderStandardError error = new OrderStandardError();
+		error.setStatus(HttpStatus.BAD_REQUEST.value());
+		error.setMessage(ex.getMessage());
+		error.setTimeStamp(System.currentTimeMillis());
+		return error;
+	}
+
 	@ExceptionHandler(Exception.class)
 	@ResponseBody
 	@ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)

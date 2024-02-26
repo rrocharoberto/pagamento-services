@@ -48,7 +48,7 @@ public class OrderRest implements OrderInterface {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void startOrderPayment(@PathVariable("orderNumber") Integer orderNumber) {
 
-		System.out.println("OrderRest - updateOrder " + orderNumber);
+		System.out.println("OrderRest - startOrderPayment " + orderNumber);
 		service.startPayment(orderNumber);
 	}
 
@@ -57,7 +57,7 @@ public class OrderRest implements OrderInterface {
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void confirmOrderPayment(@PathVariable("orderNumber") Integer orderNumber) {
 
-		System.out.println("OrderRest - updateOrder " + orderNumber);
+		System.out.println("OrderRest - confirmOrderPayment " + orderNumber);
 		service.confirmPayment(orderNumber);
 	}
 
