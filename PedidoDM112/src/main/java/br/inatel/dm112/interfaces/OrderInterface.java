@@ -14,7 +14,7 @@ public interface OrderInterface {
 
 	public void updateOrder(Order order, Integer orderNumber);
 	
-	public void startOrderPayment(@PathVariable("orderNumber") Integer orderNumber);
+	public void startOrderPayment(Integer orderNumber);
 	
 	public void confirmOrderPayment(Integer orderNumber);
 
