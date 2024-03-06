@@ -53,6 +53,7 @@ public class BilletService {
 		content.setBusinessData(businessData);
 		content.setOrderData(orderData);
 		content.setCustomerData(customerData);
+		content.setCPRFCedente(cpf);
 
 		BilletAdapter adapter = new BilletAdapter();
 		byte[] pdfContent = adapter.execute(content);
