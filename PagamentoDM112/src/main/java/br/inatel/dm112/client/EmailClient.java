@@ -15,14 +15,8 @@ public class EmailClient {
 	@Value("${utility.rest.email.url}")
 	private String restURL;
 
-	@Value("${email.sendFromAddress}")
-	private String sendFromAddress;
-
 	@Value("${email.sendToAddress}")
 	private String sendToAddress;
-	
-	@Value("${email.password}")
-	private String sendPassAddress;
 
 	private String mailEndpoint = "/mail";
 	
@@ -31,7 +25,7 @@ public class EmailClient {
 		String url = restURL + mailEndpoint ;
 		System.out.println("URL: " + url);
 		
-		MailRequestData mrd = new MailRequestData(orderNumber, sendFromAddress, sendPassAddress, sendToAddress, content);
+		MailRequestData mrd = new MailRequestData(orderNumber, sendToAddress, content);
 		
 		WebClient
 				.create(url)
@@ -50,15 +44,7 @@ public class EmailClient {
 		this.restURL = restURL;
 	}
 	
-	public void setSendFromAddress(String sendFromAddress) {
-		this.sendFromAddress = sendFromAddress;
-	}
-	
 	public void setSendToAddress(String sendToAddress) {
 		this.sendToAddress = sendToAddress;
-	}
-
-	public void setSendPassAddress(String sendPassAddress) {
-		this.sendPassAddress = sendPassAddress;
 	}
 }

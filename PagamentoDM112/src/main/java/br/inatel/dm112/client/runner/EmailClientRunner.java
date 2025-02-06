@@ -10,9 +10,7 @@ public class EmailClientRunner {
 	public static void main(String[] args) {
 		EmailClient client = new EmailClient();
 		client.setRestURL(ClientUtil.getUtilityRestEmailURL());
-		client.setSendFromAddress(ClientUtil.getEmailFromAddress());
 		client.setSendToAddress(ClientUtil.getEmailSendToAddress());
-		client.setSendPassAddress(ClientUtil.getEmailPassword());
 
 		int orderNumber = 5555; //any test order number
 		byte[] bytes = readPDFFile();

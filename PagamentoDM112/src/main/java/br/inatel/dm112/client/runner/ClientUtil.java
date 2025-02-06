@@ -22,14 +22,6 @@ public class ClientUtil {
 		return getPropertyValue("email.sendToAddress");
 	}
 
-	public static String getEmailFromAddress() {
-		return getPropertyValue("email.sendFromAddress");
-	}
-
-	public static String getEmailPassword() {
-		return getPropertyValue("email.password");
-	}
-
 	public static String getPropertyValue(String property) {
 
 		try (InputStream input = OrderClientRetrieveRunner.class.getClassLoader()
