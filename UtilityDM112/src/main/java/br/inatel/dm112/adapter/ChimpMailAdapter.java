@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("MAILCHIMP")
-public class ChimpMailAdapter  extends MailAdapter {
+public class ChimpMailAdapter  extends JavaNativeMailAdapter {
 
 	@Override
 	protected Properties getEmailHostProperties() {

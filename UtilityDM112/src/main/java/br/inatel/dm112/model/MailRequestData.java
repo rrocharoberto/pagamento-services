@@ -5,6 +5,7 @@ public class MailRequestData {
 	private int orderNumber;
 	private String from;
 	private String password;
+	private String sendgridAPIKey;
 	private String to;
 	private byte[] content;
 
@@ -59,9 +60,17 @@ public class MailRequestData {
 		this.content = content;
 	}
 
+	public String getSendgridAPIKey() {
+		return sendgridAPIKey;
+	}
+	
+	public void setSendgridAPIKey(String sendgridAPIKey) {
+		this.sendgridAPIKey = sendgridAPIKey;
+	}
+	
 	@Override
 	public String toString() {
-		return "MailRequestData [from=" + from + ", password=" + password + ", to=" + to + "]";
+		return "MailRequestData [orderNumber=" + orderNumber + ", from=" + from + ", to=" + to + "]";
 	}
 
 }

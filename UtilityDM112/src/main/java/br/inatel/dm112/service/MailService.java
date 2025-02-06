@@ -1,26 +1,38 @@
 package br.inatel.dm112.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import br.inatel.dm112.adapter.MailAdapter;
+import br.inatel.dm112.adapter.TwilioMailAdapter;
 import br.inatel.dm112.model.MailRequestData;
 import br.inatel.dm112.rest.support.UtilityException;
 
-@Service
+@Component
 public class MailService {
+	
+	@Value("${email.fromPassword}")
+	private String emailFromPassword;
+	
+	@Value("${twilio.sendgrid.api.key}")
+	private String sendgridAPIKey;
 	
 	@Autowired
 	MailAdapter sender;
 
 	public void sendMail(MailRequestData mailData) {
 		if (mailData.getFrom() == null || 
-				mailData.getPassword() == null || 
 				mailData.getTo() == null || 
 				mailData.getContent() == null) {
 			throw new UtilityException("Null values not allowed in MailRequestData.");
 		}
 
+		//set credentials
+		mailData.setPassword(emailFromPassword);
+		mailData.setSendgridAPIKey(sendgridAPIKey);
+		
 		try {
 			sender.sendMail(mailData);
 		} catch(Exception e) {

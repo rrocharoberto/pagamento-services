@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 @Profile("GMAIL")
-public class GmailMailAdapter extends MailAdapter {
+public class GmailMailAdapter extends JavaNativeMailAdapter {
 
 	@Override
 	protected Properties getEmailHostProperties() {
