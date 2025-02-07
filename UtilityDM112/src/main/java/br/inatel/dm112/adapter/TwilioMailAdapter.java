@@ -13,13 +13,11 @@ import com.sendgrid.helpers.mail.Mail;
 import com.sendgrid.helpers.mail.objects.Content;
 import com.sendgrid.helpers.mail.objects.Email;
 
-import br.inatel.dm112.model.MailRequestData;
-
 @Service
 @Profile("TWILIO")
 public class TwilioMailAdapter implements MailAdapter {
 
-	public void sendMail(MailRequestData mailData) {
+	public void sendMail(MailData mailData) {
 
 		System.out.println("Enviando email do pedido " + mailData.getOrderNumber() + " para: " + mailData.getTo());
 

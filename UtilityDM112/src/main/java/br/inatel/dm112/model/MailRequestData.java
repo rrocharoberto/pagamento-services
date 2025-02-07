@@ -3,19 +3,14 @@ package br.inatel.dm112.model;
 public class MailRequestData {
 
 	private int orderNumber;
-	private String from;
-	private String password;
-	private String sendgridAPIKey;
 	private String to;
 	private byte[] content;
 
 	public MailRequestData() {
 	}
 
-	public MailRequestData(int orderNumber, String from, String password, String to, byte[] content) {
+	public MailRequestData(int orderNumber, String to, byte[] content) {
 		this.orderNumber = orderNumber;
-		this.from = from;
-		this.password = password;
 		this.to = to;
 		this.content = content;
 	}
@@ -28,22 +23,6 @@ public class MailRequestData {
 		this.orderNumber = orderNumber;
 	}
 	
-	public String getFrom() {
-		return from;
-	}
-
-	public void setFrom(String from) {
-		this.from = from;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public String getTo() {
 		return to;
 	}
@@ -59,18 +38,10 @@ public class MailRequestData {
 	public void setContent(byte[] content) {
 		this.content = content;
 	}
-
-	public String getSendgridAPIKey() {
-		return sendgridAPIKey;
-	}
-	
-	public void setSendgridAPIKey(String sendgridAPIKey) {
-		this.sendgridAPIKey = sendgridAPIKey;
-	}
 	
 	@Override
 	public String toString() {
-		return "MailRequestData [orderNumber=" + orderNumber + ", from=" + from + ", to=" + to + "]";
+		return "MailData [orderNumber=" + orderNumber + ", to=" + to + "]";
 	}
 
 }

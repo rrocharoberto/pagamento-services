@@ -16,11 +16,9 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import javax.mail.util.ByteArrayDataSource;
 
-import br.inatel.dm112.model.MailRequestData;
-
 public abstract class JavaNativeMailAdapter implements MailAdapter {
 
-	public void sendMail(MailRequestData mailData) {
+	public void sendMail(MailData mailData) {
 
 		System.out.println("Enviando email do pedido " + mailData.getOrderNumber() + " para: " + mailData.getTo());
 
