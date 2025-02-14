@@ -42,8 +42,8 @@ public class OrderService {
 	
 	public void startPayment(int orderNumber) {
 		OrderEntity entity = getOrder(orderNumber);
-		if(entity.getStatus() != Order.STATUS.PENDING.ordinal()) {
-			throw new InvalidOrderOperationException("Order is not PENDING. Status: " + entity.getStatus());
+		if(entity.getStatus() != Order.STATUS.FILLED.ordinal()) {
+			throw new InvalidOrderOperationException("Order is not FILLED. Status: " + entity.getStatus());
 		}
 		entity.setIssueDate(new Date());
 		entity.setStatus(Order.STATUS.PENDING.ordinal());
@@ -53,6 +53,9 @@ public class OrderService {
 
 	public void confirmPayment(int orderNumber) {
 		OrderEntity entity = getOrder(orderNumber);
+		if(entity.getStatus() != Order.STATUS.PENDING.ordinal()) {
+			throw new InvalidOrderOperationException("Order is not PENDING. Status: " + entity.getStatus());
+		}
 		entity.setPaymentDate(new Date());
 		entity.setStatus(Order.STATUS.CONFIRMED.ordinal());
 		repo.save(entity);

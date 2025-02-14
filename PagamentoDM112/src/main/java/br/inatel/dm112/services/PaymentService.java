@@ -36,7 +36,7 @@ public class PaymentService {
 
 		Order order = getOrder(cpf, orderNumber); // (1) consulta o pedido pelo número
 
-		if (order.getStatus() != Order.STATUS.PENDING.ordinal()) {
+		if (order.getStatus() != Order.STATUS.FILLED.ordinal()) {
 			String msg = "Status do pedido " + orderNumber + " inválido: " + order.getStatus();
 			throw PaymentStatus.createErrorStatus(msg, cpf, orderNumber, PAY_STATUS.WRONG_ORDER_STATUS);
 		}
@@ -78,7 +78,7 @@ public class PaymentService {
 
 		Order order = getOrder(cpf, orderNumber); // (1) consulta o pedido pelo número
 
-		if (order.getStatus() == Order.STATUS.CONFIRMED.ordinal()) {
+		if (order.getStatus() != Order.STATUS.PENDING.ordinal()) {
 			String msg = "Status do pedido " + orderNumber + " inválido: " + order.getStatus();
 			throw PaymentStatus.createErrorStatus(msg, cpf, orderNumber, PAY_STATUS.WRONG_ORDER_STATUS);
 		}
