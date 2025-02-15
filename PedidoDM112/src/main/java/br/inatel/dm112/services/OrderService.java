@@ -37,7 +37,7 @@ public class OrderService {
 		OrderEntity entity = getOrder(orderNumber);
 		updateOrderData(order, entity); // don't change PK
 		repo.save(entity);
-		System.out.println("OrderImpl updateOrder - atualizou o pedido com número: " + order.getNumber());
+		System.out.println("OrderService updateOrder - atualizou o pedido: " + order.getNumber());
 	}
 	
 	public void startPayment(int orderNumber) {
@@ -48,7 +48,7 @@ public class OrderService {
 		entity.setIssueDate(new Date());
 		entity.setStatus(Order.STATUS.PENDING.ordinal());
 		repo.save(entity);
-		System.out.println("OrderImpl confirmPayment - confirmou o pagamento do pedido com número: " + orderNumber);
+		System.out.println("OrderService startPayment - iniciou o pagamento do pedido: " + orderNumber);
 	}
 
 	public void confirmPayment(int orderNumber) {
@@ -59,14 +59,14 @@ public class OrderService {
 		entity.setPaymentDate(new Date());
 		entity.setStatus(Order.STATUS.CONFIRMED.ordinal());
 		repo.save(entity);
-		System.out.println("OrderImpl confirmPayment - confirmou o pagamento do pedido com número: " + orderNumber);
+		System.out.println("OrderService confirmPayment - confirmou o pagamento do pedido: " + orderNumber);
 	}
 
 	public OrderEntity createOrder(Order order) {
 
 		OrderEntity entity = convertToEntity(order);
 		repo.save(entity);
-		System.out.println("OrderImpl createOrder - pedido criado com número: " + entity.getNumber());
+		System.out.println("OrderService createOrder - pedido criado com número: " + entity.getNumber());
 		return entity;
 	}
 

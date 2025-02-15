@@ -131,8 +131,8 @@ public class OrderClient {
 			HttpResponse<String> response = HttpClient.newBuilder()
 					  .build()
 					  .send(request, BodyHandlers.ofString());
-			if(response.statusCode() != HttpStatus.NO_CONTENT.ordinal()) {
-				throw new RuntimeException("Error updating Order Payment. statusCode" + response.statusCode());
+			if(response.statusCode() != 204) {
+				throw new RuntimeException("Error updating Order Payment. statusCode: " + response.statusCode() + " expected: 204");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

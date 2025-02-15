@@ -26,7 +26,7 @@ public class PedidoApp implements CommandLineRunner {
 		OrderEntity order1 = new OrderEntity();
 		order1.setCPF("111.111.111-11");
 		order1.setOrderDate(new Date());
-		order1.setStatus(1);
+		order1.setStatus(0);
 		order1.setValue(123.45f);
 
 		repo.save(order1);
@@ -34,7 +34,7 @@ public class PedidoApp implements CommandLineRunner {
 		OrderEntity order2 = new OrderEntity();
 		order2.setCPF("222.222.222-22");
 		order2.setOrderDate(new Date());
-		order2.setStatus(1);
+		order2.setStatus(0);
 		order2.setValue(234.56f);
 
 		repo.save(order2);

@@ -44,7 +44,7 @@ public class PaymentService {
 		try {
 			clientOrder.startOrderPayment(orderNumber); // (2) atualiza o status do pedido
 		} catch (Exception e) {
-			String msg = "Erro no serviço de pedido: start payment";
+			String msg = "Erro no serviço de pedido: start payment: " + e.getMessage();
 			throw PaymentStatus.createErrorStatus(msg, cpf, orderNumber, PAY_STATUS.ORDER_ERROR);
 		}
 		BilletGenResponse respBillet;
